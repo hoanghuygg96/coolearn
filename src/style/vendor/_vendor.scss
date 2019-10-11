@@ -2,6 +2,8 @@
 .nav-tabs {
   border: none;
   // padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav-tabs .nav-link {
