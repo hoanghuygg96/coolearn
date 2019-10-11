@@ -59,6 +59,16 @@ a:not([href]):not([tabindex]):focus {
     0 3px 1px 0 rgba(20, 23, 28, 0.1);
 }
 
+.slick-next {
+  right: -98%;
+  top: -251px;
+}
+
+.slick-prev {
+  left: -25px;
+  top: 151px;
+}
+
 .slick-prev:hover,
 .slick-next:hover {
   box-shadow: 0 2px 8px 2px rgba(20, 23, 28, 0.15);
@@ -84,3 +94,6 @@ a:not([href]):not([tabindex]):focus {
 }
 
 // dropdown
+.stick-list {
+  top: -54px;
+}
