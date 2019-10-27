@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import CourseItem from "./CourseItem/CourseItem";
 import { Link } from "react-router-dom";
+
 class CoursesContent extends Component {
   render() {
     const { filterCourses } = this.props;

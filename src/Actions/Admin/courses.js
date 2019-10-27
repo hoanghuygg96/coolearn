@@ -92,6 +92,23 @@ export const addCourses = (data, callback) => {
     });
 };
 
+export const upImg = (data, callback) => {
+  const accessToken = JSON.parse(localStorage.getItem("accessToken"));
+
+  api.defaults.headers.common["Authorization"] = "Bearer " + accessToken;
+
+  api
+    .post("/QuanLyKhoaHoc/UploadHinhAnhKhoaHoc", data)
+    .then(res => {
+      console.log(res.data);
+
+      if (callback) callback(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 // edit courses
 export const editCourses = (data, callback) => {
   const accessToken = JSON.parse(localStorage.getItem("accessToken"));
@@ -103,19 +120,15 @@ export const editCourses = (data, callback) => {
     .then(res => {
       console.log(res.data);
       swal({
-        title: "Cập nhật khóa học thành công",
+        title: "Sửa khóa học thành công",
         icon: "success",
         button: "Đóng"
       });
+
       if (callback) callback(res.data);
     })
     .catch(err => {
       console.log(err);
-      swal({
-        title: "Cập nhật khóa học thất bại",
-        icon: "error",
-        button: "Đóng"
-      });
     });
 };
 

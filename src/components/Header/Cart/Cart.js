@@ -59,23 +59,23 @@ class Cart extends Component {
     return (
       <>
         {_.isEmpty(this.props.currentUser) ? (
-          <NavItem className="cart">
-            <Link to="/cart">
+          <Link to="/cart">
+            <NavItem className="cart">
               <CartLogo className="cart-logo" />
               <span className="cart-number">{this.state.cartNumber}</span>
-            </Link>
-            <div className="cart-content">{cartList}</div>
-          </NavItem>
+              <div className="cart-content">{cartList}</div>
+            </NavItem>
+          </Link>
         ) : (
           <>
             <ButtonMyCourse />
-            <NavItem className="cart">
-              <Link to="/cart">
+            <Link to="/cart">
+              <NavItem className="cart">
                 <CartLogo className="cart-logo" />
                 <span className="cart-number">{this.state.cartNumber}</span>
-              </Link>
-              <div className="cart-content">{cartList}</div>
-            </NavItem>
+                <div className="cart-content">{cartList}</div>
+              </NavItem>
+            </Link>
           </>
         )}
       </>

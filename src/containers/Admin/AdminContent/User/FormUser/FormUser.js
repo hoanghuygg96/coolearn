@@ -58,6 +58,7 @@ class FormUser extends Component {
                 placeholder="Số điện thoại"
                 onChange={onChange()}
                 value={soDT}
+                required="required"
               />
             </FormGroup>
           </Col>
@@ -72,6 +73,7 @@ class FormUser extends Component {
                 placeholder="Email"
                 onChange={onChange()}
                 value={email}
+                required="required"
               />
             </FormGroup>
           </Col>
@@ -88,6 +90,7 @@ class FormUser extends Component {
                 placeholder="Mật khẩu"
                 onChange={onChange()}
                 value={matKhau}
+                required="required"
               />
             </FormGroup>
           </Col>

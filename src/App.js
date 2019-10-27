@@ -66,6 +66,7 @@ class App extends React.Component {
                 path="/sub-course/:maKhoaHoc"
                 component={MycoursesDetail}
               />
+
               <ProtectedRoute path="/admin" component={Admin} />
               <Route component={NotFound} />
             </Switch>

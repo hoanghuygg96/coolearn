@@ -1,25 +1,17 @@
 import React, { Component } from "react";
-import {
-  Col,
-  Row,
-  Form,
-  FormGroup,
-  Label,
-  Input
-  //  FormText
-} from "reactstrap";
+import { Col, Row, Form, FormGroup, Label, Input } from "reactstrap";
 class FromCourses extends Component {
   render() {
     const {
       onChange,
-      // onSelectImg,
+      onSelectImg,
       isDisabled,
 
       maKhoaHoc,
       tenKhoaHoc,
       // hinhAnh,
       moTa,
-      danhMucKhoaHoc
+      maDanhMucKhoaHoc
     } = this.props;
     return (
       <Form>
@@ -35,6 +27,7 @@ class FromCourses extends Component {
                 onChange={onChange()}
                 disabled={isDisabled ? true : false}
                 value={maKhoaHoc}
+                required="required"
               />
             </FormGroup>
           </Col>
@@ -51,6 +44,7 @@ class FromCourses extends Component {
                 placeholder="Tên khóa học"
                 onChange={onChange()}
                 value={tenKhoaHoc}
+                required="required"
               />
             </FormGroup>
           </Col>
@@ -64,6 +58,7 @@ class FromCourses extends Component {
                 placeholder="Mô tả"
                 onChange={onChange()}
                 value={moTa}
+                required="true"
               />
             </FormGroup>
           </Col>
@@ -79,7 +74,7 @@ class FromCourses extends Component {
                 name="maDanhMucKhoaHoc"
                 id="maDanhMucKhoaHoc"
                 onChange={onChange()}
-                value={danhMucKhoaHoc}
+                value={maDanhMucKhoaHoc}
               >
                 <option value="EMPTY">Chưa chọn</option>
                 <option value="TuDuy">Tư duy lập trình</option>
@@ -93,8 +88,8 @@ class FromCourses extends Component {
           </Col>
         </Row>
         {/* //// */}
-        {/* <Row form>
-          <Col md={12}>
+        <Row form>
+          <Col md={12} style={{ height: "100px" }}>
             <FormGroup>
               <Label for="hinhAnh">Hình ảnh</Label>
               <Input
@@ -103,10 +98,9 @@ class FromCourses extends Component {
                 id="hinhAnh"
                 onChange={onSelectImg()}
               />
-              <FormText color="muted"></FormText>
             </FormGroup>
           </Col>
-        </Row> */}
+        </Row>
       </Form>
     );
   }

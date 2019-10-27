@@ -117,6 +117,14 @@
   padding: 5rem 10rem;
   padding-bottom: 3rem;
 
+  @media only screen and (max-width: $bp-largest) {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+  @media only screen and (max-width: $bp-large) {
+    width: 100rem;
+  }
+
   &__viewall {
     text-align: center;
 
@@ -138,6 +146,10 @@
   &__content {
     margin: 0 auto;
     width: 100rem;
+
+    @media only screen and (max-width: $bp-largest) {
+      width: 100%;
+    }
   }
 
   &__list {
@@ -170,6 +182,10 @@
     transition: all 0.3s;
     margin-bottom: 7.5rem;
 
+    @media only screen and (max-width: $bp-largest) {
+      width: 7rem;
+    }
+
     &:hover {
       color: $color-green;
       background-color: $color-dark-light;
@@ -188,6 +204,10 @@
     width: 230px;
     transition: all 0.3s;
 
+    @media only screen and (max-width: $bp-largest) {
+      width: 21rem;
+    }
+
     &-content {
       padding: 2rem;
       color: black;
@@ -203,6 +223,13 @@
         width: 175px;
       }
 
+      h5 {
+        white-space: nowrap;
+        width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
       p {
         font-size: 1.4rem;
       }
@@ -212,6 +239,10 @@
       width: 230px;
       height: 130px;
       object-fit: cover;
+
+      @media only screen and (max-width: $bp-largest) {
+        width: 210px;
+      }
     }
 
     &:hover {
@@ -250,7 +281,7 @@
     position: relative;
     border: 2px solid #e2e2e2;
     padding: 25px;
-    min-height: 135px;
+    height: 190px;
     transition: all 0.3s;
 
     &:hover {
@@ -358,6 +389,10 @@
 .minimalist {
   background-color: #eaedf1;
   padding: 5rem 0;
+
+  @media only screen and (max-width: $bp-large) {
+    width: 100rem;
+  }
 
   &__heading {
     text-align: center;

@@ -17,13 +17,14 @@ export const signup = (data, callback) => {
       });
       callback();
     })
-    .catch(err => {
+    .catch(error => {
       swal({
-        title: "Đăng ký thất bại",
+        title: error.response.data,
         icon: "error",
         button: "Đóng"
       });
-      console.log(err);
+      console.log(error);
+      console.log(error.response.data);
     });
 };
 
@@ -41,10 +42,12 @@ export const signin = (data, callback) => {
       });
       if (callback) callback(res.data);
     })
-    .catch(err => {
-      console.log(err);
+    .catch(error => {
+      console.log(error);
+      console.log(error.response.data);
+
       swal({
-        title: "Đăng nhập thất bại",
+        title: error.response.data,
         icon: "error",
         button: "Đóng"
       });

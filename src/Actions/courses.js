@@ -25,22 +25,22 @@ export const courses = data => {
 
 // lay chi thong tin chi tiet cua mot khoa hoc
 export const getCourseDetail = (maKhoaHoc, callback) => {
-  return dispatch => {
-    api
-      .get("/QuanLyKhoaHoc/LayThongTinKhoaHoc", {
-        params: { maKhoaHoc }
-      })
-      .then(res => {
-        console.log(res.data);
+  api
+    .get("/QuanLyKhoaHoc/LayThongTinKhoaHoc", {
+      params: { maKhoaHoc }
+    })
+    .then(res => {
+      console.log(res.data);
 
-        dispatch({
-          type: Types.GET_COURSES_DETAIL,
-          payload: res.data
-        });
+      if (callback) callback(res.data);
+    })
+    .catch(err => console.log(err));
+};
 
-        if (callback) callback(res.data);
-      })
-      .catch(err => console.log(err));
+export const courseDetail = data => {
+  return {
+    type: Types.GET_COURSES_DETAIL,
+    payload: data
   };
 };
 

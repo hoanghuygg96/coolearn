@@ -3,6 +3,16 @@
   padding-top: 3rem;
   padding-bottom: 3rem;
 
+  display: flex;
+  justify-content: center;
+
+  &__spinner {
+    height: 300px;
+  }
+
+  & .text-success {
+    color: $color-primary !important;
+  }
   &__content {
     width: 100rem;
     margin: 0 auto;

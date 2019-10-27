@@ -12,12 +12,15 @@ import { maNhom } from "../../../../../MaNhom/MaNhom";
 import {
   allCourses,
   addCourses,
-  editCourses
+  editCourses,
+  upImg
 } from "../../../../../Actions/Admin/courses";
 import { getCourseDetail } from "../../../../../Actions/courses";
 import { getCourses } from "../../../../../Actions/courses";
 import FormCourses from "../FormCourses/FormCourses";
 // import FormData from "form-data";
+import swal from "sweetalert";
+
 class ModalCourses extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +39,9 @@ class ModalCourses extends Component {
       luotXem: 0,
       danhGia: 0,
       taiKhoanNguoiTao: "",
-      maNhom: maNhom
+      maNhom: maNhom,
+
+      hinhAnhUp: null
     };
 
     this.toggle = this.toggle.bind(this);
@@ -74,7 +79,9 @@ class ModalCourses extends Component {
       maDanhMucKhoaHoc,
       taiKhoanNguoiTao,
       ngayTao,
-      maNhom
+      maNhom,
+
+      hinhAnhUp
     } = this.state;
 
     const data = {
@@ -91,13 +98,29 @@ class ModalCourses extends Component {
       maNhom
     };
 
+    let frm = new FormData();
+    frm.append("file", hinhAnhUp);
+    frm.append("tenKhoaHoc", tenKhoaHoc);
+
     const { allCourses } = this.props;
 
-    addCourses(data, course => {
-      getCourses(listCourses => {
-        allCourses(listCourses);
+    if (!hinhAnhUp) {
+      swal({
+        title: "Vui lòng chọn hình ảnh",
+        icon: "error",
+        button: "Đóng"
       });
-      this.toggle();
+      return;
+    }
+
+    addCourses(data, course => {
+      upImg(frm, course => {
+        getCourses(listCourses => {
+          allCourses(listCourses);
+        });
+
+        this.toggle();
+      });
     });
   };
 
@@ -113,7 +136,9 @@ class ModalCourses extends Component {
       maDanhMucKhoaHoc,
       taiKhoanNguoiTao,
       ngayTao,
-      maNhom
+      maNhom,
+
+      hinhAnhUp
     } = this.state;
 
     const data = {
@@ -130,11 +155,26 @@ class ModalCourses extends Component {
       maNhom
     };
 
+    let frm = new FormData();
+    frm.append("file", hinhAnhUp);
+    frm.append("tenKhoaHoc", tenKhoaHoc);
+
     const { allCourses } = this.props;
 
+    if (!hinhAnhUp) {
+      swal({
+        title: "Vui lòng chọn hình ảnh",
+        icon: "error",
+        button: "Đóng"
+      });
+      return;
+    }
+
     editCourses(data, course => {
-      getCourses(listCourses => {
-        allCourses(listCourses);
+      upImg(frm, course => {
+        getCourses(listCourses => {
+          allCourses(listCourses);
+        });
       });
       this.toggle();
     });
@@ -143,12 +183,14 @@ class ModalCourses extends Component {
   openEditModal = () => {
     const { maKhoaHoc } = this.props;
     getCourseDetail(maKhoaHoc, course => {
+      const danhMucKhoaHoc = course.danhMucKhoaHoc;
+
       this.setState({
         maKhoaHoc: course.maKhoaHoc,
         tenKhoaHoc: course.tenKhoaHoc,
         moTa: course.moTa,
         // hinhAnh: course.hinhAnh,
-        maDanhMucKhoaHoc: course.maDanhMucKhoaHoc
+        maDanhMucKhoaHoc: danhMucKhoaHoc.maDanhMucKhoahoc
       });
     });
   };
@@ -174,7 +216,7 @@ class ModalCourses extends Component {
 
   onSelectImg = e => {
     this.setState({
-      hinhAnh: e.target.files[0]
+      hinhAnhUp: e.target.files[0]
     });
   };
 
