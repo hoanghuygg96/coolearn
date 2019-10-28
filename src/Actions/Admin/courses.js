@@ -152,7 +152,7 @@ export const deleteCourses = (maKhoaHoc, callback) => {
     .catch(err => {
       console.log(err);
       swal({
-        title: "Xóa khóa học thất bại",
+        title: err.response.data,
         icon: "error",
         button: "Đóng"
       });

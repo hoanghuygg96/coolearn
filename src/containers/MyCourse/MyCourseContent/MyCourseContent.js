@@ -7,26 +7,40 @@ import { listMyCourse } from "../../../Actions/courses";
 import { unsubCoures } from "../../../Actions/courses";
 import { getUserDetail } from "../../../Actions/users";
 
+import swal from "sweetalert";
+
 class MyCourseContent extends Component {
   onUnsub = maKhoaHoc => {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const { taiKhoan } = currentUser;
     const { listMyCourseProps, listMyCourse } = this.props;
-    unsubCoures(
-      {
-        maKhoaHoc,
-        taiKhoan
-      },
-      () => {
-        getUserDetail(taiKhoan, res => {
-          const listCourseFilter = listMyCourseProps.filter(
-            el => el.maKhoaHoc !== maKhoaHoc
-          );
-          listMyCourse(listCourseFilter);
-        });
-        this.props.history.push("/my-course");
-      }
-    );
+
+    swal({
+      title: "Bạn thật sự muốn hủy khóa học này?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true
+    }).then(willDelete => {
+      unsubCoures(
+        {
+          maKhoaHoc,
+          taiKhoan
+        },
+        () => {
+          swal("Hủy khóa học thành công", {
+            icon: "success"
+          });
+
+          getUserDetail(taiKhoan, res => {
+            const listCourseFilter = listMyCourseProps.filter(
+              el => el.maKhoaHoc !== maKhoaHoc
+            );
+            listMyCourse(listCourseFilter);
+          });
+          this.props.history.push("/my-course");
+        }
+      );
+    });
   };
 
   render() {

@@ -8,11 +8,21 @@ import {
 } from "../../../../../Actions/Admin/courses";
 import { getCourses } from "../../../../../Actions/courses";
 import CoursesTableItem from "../CoursesTableItem/CoursesTableItem";
+
+import swal from "sweetalert";
+
 class CoursesTableContent extends Component {
   onDeleteCourses = maKhoaHoc => {
-    deleteCourses(maKhoaHoc, () => {
-      getCourses(courses => {
-        this.props.allCourses(courses);
+    swal({
+      title: "Bạn thật sự muốn xóa khóa học này?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true
+    }).then(willDelete => {
+      deleteCourses(maKhoaHoc, () => {
+        getCourses(courses => {
+          this.props.allCourses(courses);
+        });
       });
     });
   };

@@ -9,11 +9,20 @@ import {
   allUser
 } from "../../../../../Actions/Admin/users";
 
+import swal from "sweetalert";
+
 class UserTableContent extends Component {
   onDeleteUser = taiKhoan => {
-    deleteUser(taiKhoan, () => {
-      getAllUser(users => {
-        this.props.allUser(users);
+    swal({
+      title: "Bạn thật sự muốn xóa học viên này?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true
+    }).then(willDelete => {
+      deleteUser(taiKhoan, () => {
+        getAllUser(users => {
+          this.props.allUser(users);
+        });
       });
     });
   };

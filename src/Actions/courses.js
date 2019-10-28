@@ -70,11 +70,11 @@ export const unsubCoures = (data, callback) => {
     .then(res => {
       console.log(res.data);
 
-      swal({
-        title: "Hủy đăng ký khóa học thành công",
-        icon: "success",
-        button: "Đóng"
-      });
+      // swal({
+      //   title: "Hủy đăng ký khóa học thành công",
+      //   icon: "success",
+      //   button: "Đóng"
+      // });
 
       if (callback) callback(res.data);
     })

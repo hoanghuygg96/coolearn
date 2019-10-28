@@ -48,10 +48,11 @@ export const deleteUser = (taiKhoan, callback) => {
     })
     .catch(err => {
       console.log(err);
+      console.log(err.response.data);
 
       swal({
-        title: `Xóa ${taiKhoan} thất bại`,
-        icon: "success",
+        title: err.response.data,
+        icon: "error",
         button: "Đóng"
       });
     });
