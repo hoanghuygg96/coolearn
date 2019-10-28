@@ -19,11 +19,13 @@ class UserTableContent extends Component {
       buttons: true,
       dangerMode: true
     }).then(willDelete => {
-      deleteUser(taiKhoan, () => {
-        getAllUser(users => {
-          this.props.allUser(users);
+      if (willDelete) {
+        deleteUser(taiKhoan, () => {
+          getAllUser(users => {
+            this.props.allUser(users);
+          });
         });
-      });
+      }
     });
   };
 

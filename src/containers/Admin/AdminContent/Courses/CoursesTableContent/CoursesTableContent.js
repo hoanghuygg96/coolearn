@@ -19,11 +19,13 @@ class CoursesTableContent extends Component {
       buttons: true,
       dangerMode: true
     }).then(willDelete => {
-      deleteCourses(maKhoaHoc, () => {
-        getCourses(courses => {
-          this.props.allCourses(courses);
+      if (willDelete) {
+        deleteCourses(maKhoaHoc, () => {
+          getCourses(courses => {
+            this.props.allCourses(courses);
+          });
         });
-      });
+      }
     });
   };
 

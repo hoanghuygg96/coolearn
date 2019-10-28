@@ -21,25 +21,27 @@ class MyCourseContent extends Component {
       buttons: true,
       dangerMode: true
     }).then(willDelete => {
-      unsubCoures(
-        {
-          maKhoaHoc,
-          taiKhoan
-        },
-        () => {
-          swal("Hủy khóa học thành công", {
-            icon: "success"
-          });
+      if (willDelete) {
+        unsubCoures(
+          {
+            maKhoaHoc,
+            taiKhoan
+          },
+          () => {
+            swal("Hủy khóa học thành công", {
+              icon: "success"
+            });
 
-          getUserDetail(taiKhoan, res => {
-            const listCourseFilter = listMyCourseProps.filter(
-              el => el.maKhoaHoc !== maKhoaHoc
-            );
-            listMyCourse(listCourseFilter);
-          });
-          this.props.history.push("/my-course");
-        }
-      );
+            getUserDetail(taiKhoan, res => {
+              const listCourseFilter = listMyCourseProps.filter(
+                el => el.maKhoaHoc !== maKhoaHoc
+              );
+              listMyCourse(listCourseFilter);
+            });
+            this.props.history.push("/my-course");
+          }
+        );
+      }
     });
   };
 
