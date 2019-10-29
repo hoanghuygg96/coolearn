@@ -4,6 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import _ from "lodash";
 import { connect } from "react-redux";
 import { setCurrentUser } from "../../../Actions/users";
+import { cartList } from "../../../Actions/cart";
 
 import { NavItem } from "reactstrap";
 
@@ -20,7 +21,9 @@ class HeaderButton extends Component {
     localStorage.removeItem("currentUser");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("chiTietKhoaHocGhiDanh");
-    localStorage.removeItem("cartList");
+
+    localStorage.setItem("cartList", JSON.stringify([]));
+    this.props.cartList([]);
 
     Auth.logout();
 
@@ -76,6 +79,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setCurrentUser: user => {
       dispatch(setCurrentUser(user));
+    },
+    cartList: data => {
+      dispatch(cartList(data));
     }
   };
 };

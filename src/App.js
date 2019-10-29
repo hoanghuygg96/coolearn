@@ -23,7 +23,7 @@ import Admin from "./containers/Admin/Admin";
 
 import ScrollToTop from "./ScrollToTop/ScrollToTop";
 import NotFound from "./containers/NotFound/NotFound";
-import MycoursesDetail from "./containers/MyCoursesDetail/MycoursesDetail";
+// import MycoursesDetail from "./containers/MyCoursesDetail/MycoursesDetail";
 
 import ProtectedRoute from "./Auth/protected.route";
 // import ProtectedUserRoute from "./Auth/protected.user.router";

@@ -18,7 +18,8 @@ class CardCourse extends Component {
     super(props);
     this.state = {
       taiKhoan: "",
-      isSubPage: false
+      isSubPage: false,
+      historyUrl: "/"
     };
   }
 
@@ -29,8 +30,7 @@ class CardCourse extends Component {
   componentDidMount() {
     const pathname = this.props.history.location.pathname;
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
-    if (pathname.search("sub-course")) {
+    if (pathname.indexOf("sub-course") !== -1) {
       this.setState({ isSubPage: true });
     }
 
