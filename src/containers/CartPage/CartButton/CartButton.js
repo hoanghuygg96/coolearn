@@ -57,6 +57,7 @@ class CartButton extends Component {
             icon: "success",
             button: "Đóng"
           });
+          this.props.history.push("/my-course");
 
           getUserDetail(taiKhoan, res => {
             // const filterCart = cartListProps.filter(
@@ -68,7 +69,6 @@ class CartButton extends Component {
       listMyCourse([...listMyCourseProps, ...cartListState]);
       cartList([]);
       localStorage.setItem("cartList", JSON.stringify([]));
-      this.props.history.push("/my-course");
     } else if (cartListState.length === 0) {
       swal({
         title: "Không có khóa học nào trong vỏ để ghi danh",
