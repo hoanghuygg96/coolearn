@@ -50,6 +50,10 @@ class CartButton extends Component {
     if (taiKhoan !== "" && cartListState.length !== 0) {
       cartListState.forEach(item => {
         enrollCourse({ taiKhoan, maKhoaHoc: item.maKhoaHoc }, () => {
+          listMyCourse([...listMyCourseProps, ...cartListState]);
+          cartList([]);
+          localStorage.setItem("cartList", JSON.stringify([]));
+
           swal({
             // title: `Khóa học ${item.tenKhoaHoc} đã được ghi danh`,
             title: `Tất cả khóa học đã được ghi danh`,
@@ -66,9 +70,6 @@ class CartButton extends Component {
           });
         });
       });
-      listMyCourse([...listMyCourseProps, ...cartListState]);
-      cartList([]);
-      localStorage.setItem("cartList", JSON.stringify([]));
     } else if (cartListState.length === 0) {
       swal({
         title: "Không có khóa học nào trong vỏ để ghi danh",
