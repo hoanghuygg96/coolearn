@@ -20,6 +20,7 @@ class HeaderButton extends Component {
     localStorage.removeItem("currentUser");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("chiTietKhoaHocGhiDanh");
+    localStorage.removeItem("cartList");
 
     Auth.logout();
 
