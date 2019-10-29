@@ -20,6 +20,7 @@ class DescriptionCourse extends Component {
   componentDidMount() {
     const pathname = this.props.history.location.pathname;
     const maKhoaHoc = _.last(pathname.split("/"));
+
     getCourseDetail(maKhoaHoc, res => {
       this.setState({ loading: false });
       this.props.courseDetail(res);

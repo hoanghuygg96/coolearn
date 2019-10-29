@@ -23,12 +23,12 @@ class HeaderButton extends Component {
 
     Auth.logout();
 
+    this.props.history.push("/signin");
     swal({
       title: "Đăng xuất thành công",
       icon: "success",
       button: "Đóng"
     });
-    this.props.history.push("/");
   };
 
   render() {

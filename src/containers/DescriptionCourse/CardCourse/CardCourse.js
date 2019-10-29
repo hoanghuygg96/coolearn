@@ -9,13 +9,16 @@ import { listMyCourse } from "../../../Actions/courses";
 import { Link } from "react-router-dom";
 import ImgReplace from "../../../assets/img/img_replace.PNG";
 
+import { Progress } from "reactstrap";
+
 import swal from "sweetalert";
 
 class CardCourse extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      taiKhoan: ""
+      taiKhoan: "",
+      isSubPage: false
     };
   }
 
@@ -24,7 +27,13 @@ class CardCourse extends Component {
   };
 
   componentDidMount() {
+    const pathname = this.props.history.location.pathname;
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (pathname.search("sub-course")) {
+      this.setState({ isSubPage: true });
+    }
+
     if (currentUser) {
       this.setState({
         taiKhoan: currentUser.taiKhoan
@@ -95,6 +104,25 @@ class CardCourse extends Component {
     const courseDetail = this.props.courseDetail;
     const cartListStorage = JSON.parse(localStorage.getItem("cartList"));
 
+    if (this.state.taiKhoan === "") {
+      swal("Vui lòng đăng nhập để tiếp tục!", {
+        buttons: {
+          cancel: "Hủy",
+          catch: {
+            text: "Đăng nhập",
+            value: "login"
+          }
+        }
+      }).then(value => {
+        switch (value) {
+          case "login":
+            this.props.history.push("/signin");
+            break;
+        }
+      });
+      return;
+    }
+
     if (cartListStorage.length === 0) {
       this.props.cartList([...cartListStorage, courseDetail]);
       localStorage.setItem(
@@ -135,6 +163,24 @@ class CardCourse extends Component {
   render() {
     const { hinhAnh, maKhoaHoc } = this.props.courseDetail;
 
+    const cardBtn = !this.state.isSubPage ? (
+      <div className="descourse__btn">
+        <Link
+          to={`/sub-course/${maKhoaHoc}`}
+          className="descourse__btn-entercourse"
+        >
+          Truy cập khóa học
+        </Link>
+      </div>
+    ) : (
+      <>
+        <div className="text-center progress__course">
+          Tiến độ khóa học: 25%
+        </div>
+        <Progress value="25" />
+      </>
+    );
+
     return (
       <div className="descourse__card">
         <div className="descourse__card-content-img">
@@ -157,14 +203,17 @@ class CardCourse extends Component {
             </button>
           </div>
         ) : (
-          <div className="descourse__btn">
-            <Link
-              to={`/sub-course/${maKhoaHoc}`}
-              className="descourse__btn-entercourse"
-            >
-              Truy cập khóa học
-            </Link>
-          </div>
+          //  (
+          //   <div className="descourse__btn">
+          //     <Link
+          //       to={`/sub-course/${maKhoaHoc}`}
+          //       className="descourse__btn-entercourse"
+          //     >
+          //       Truy cập khóa học
+          //     </Link>
+          //   </div>
+          // )
+          cardBtn
         )}
       </div>
     );

@@ -64,7 +64,7 @@ class App extends React.Component {
               <ProtectedRoute path="/my-course" component={MyCourse} />
               <ProtectedRoute
                 path="/sub-course/:maKhoaHoc"
-                component={MycoursesDetail}
+                component={DescriptionCourse}
               />
 
               <ProtectedRoute path="/admin" component={Admin} />
