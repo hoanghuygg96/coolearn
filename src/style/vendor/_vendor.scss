@@ -95,7 +95,6 @@ a:not([href]):not([tabindex]):focus {
   height: 300px;
 }
 
-// dropdown
-// .slick-list {
-//   top: -54px;
-// }
+.navbar-expand-md .navbar-nav .nav-link {
+  padding: 0;
+}

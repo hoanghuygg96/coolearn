@@ -52,7 +52,7 @@ class HeaderButton extends Component {
           </>
         ) : (
           <>
-            <NavItem>
+            <NavItem className="btn-pro">
               <Link
                 to={`/profile/${this.props.currentUser.taiKhoan}`}
                 className="btn-profile"

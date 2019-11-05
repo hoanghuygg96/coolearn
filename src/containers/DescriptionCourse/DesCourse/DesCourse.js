@@ -16,8 +16,8 @@ class DesCourse extends Component {
 
     this.props.isEnroll(false);
     if (chiTietKhoaHocGhiDanh) {
-      for (let item of chiTietKhoaHocGhiDanh) {
-        if (item.maKhoaHoc === maKhoaHoc) {
+      for (const i of chiTietKhoaHocGhiDanh) {
+        if (i.maKhoaHoc === maKhoaHoc) {
           this.props.isEnroll(true);
         }
       }

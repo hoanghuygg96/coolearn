@@ -1,4 +1,37 @@
 .header {
+  &__sticky {
+    background-color: $color-dark;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+
+    height: 6rem !important;
+
+    animation: color-opacity;
+    animation-duration: 0.3s;
+
+    & .header__brand {
+      font-size: 3rem;
+
+      .header__brand-logo {
+        height: 3rem;
+        width: 3rem;
+      }
+    }
+
+    .btn-logout {
+      font-size: 1.3rem;
+    }
+
+    & a {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__height {
+    height: 100px;
+  }
+
   background-color: #3a464b;
 
   background-image: url(../../assets/img/bg.jpg);
@@ -23,11 +56,17 @@
 
   &__content {
     height: 10rem;
-    margin: 0 auto;
-    font-size: 1.4rem;
-    width: 100rem;
-    display: flex;
-    align-items: center;
+    transition: all 0.3s;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+
+    &--main {
+      width: 100rem;
+      display: flex;
+      margin: 0 auto;
+    }
   }
 
   &__brand {
@@ -171,5 +210,17 @@
     &:hover {
       text-decoration: none;
     }
+  }
+}
+
+.btn-pro {
+  align-items: center;
+  display: flex;
+  .btn-profile {
+    display: block;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 1.5rem;
   }
 }

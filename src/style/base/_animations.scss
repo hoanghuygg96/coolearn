@@ -6,3 +6,17 @@
     transform: translateX(-100%);
   }
 }
+
+@keyframes color-opacity {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

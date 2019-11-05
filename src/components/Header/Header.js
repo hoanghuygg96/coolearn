@@ -14,13 +14,29 @@ class Header extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      scrolled: false
     };
   }
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
+  }
+
+  componentDidMount() {
+    window.addEventListener("scroll", () => {
+      const isTop = window.scrollY < 100;
+      if (isTop !== true) {
+        this.setState({ scrolled: true });
+      } else {
+        this.setState({ scrolled: false });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll");
   }
 
   render() {
@@ -37,29 +53,41 @@ class Header extends Component {
         className="header"
         style={{ backgroundImage: img, display: display }}
       >
-        <Navbar expand="md" className="header__content">
-          <NavbarBrand href="/">
-            {/* logo */}
-            <Logo />
-            {/* logo end */}
-          </NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse
-            isOpen={this.state.isOpen}
-            navbar
-            className="header__navbar"
-          >
-            <Nav className="ml-auto header__nav" navbar>
-              {/* // categories */}
-              <Categories />
-              {/* // categories end */}
+        {/* start navbar */}
+        <div className="header__height"></div>
+        <Navbar
+          expand="md"
+          className={
+            this.state.scrolled
+              ? "header__content header__sticky"
+              : "header__content"
+          }
+        >
+          <div className="header__content--main">
+            <NavbarBrand href="/">
+              {/* logo */}
+              <Logo />
+              {/* logo end */}
+            </NavbarBrand>
+            <NavbarToggler onClick={this.toggle} />
+            <Collapse
+              isOpen={this.state.isOpen}
+              navbar
+              className="header__navbar"
+            >
+              <Nav className="ml-auto header__nav" navbar>
+                {/* // categories */}
+                <Categories />
+                {/* // categories end */}
 
-              <Cart />
+                <Cart />
 
-              <HeaderButton />
-            </Nav>
-          </Collapse>
+                <HeaderButton />
+              </Nav>
+            </Collapse>
+          </div>
         </Navbar>
+        {/* end navbar */}
 
         {showSlider}
       </div>
