@@ -71,7 +71,9 @@ class Categories extends Component {
           onClick={() => this.selectCategories(el.maDanhMuc)}
           className="header__link"
         >
-          <DropdownItem>{el.tenDanhMuc}</DropdownItem>
+          <DropdownItem>
+            <span>{el.tenDanhMuc}</span>
+          </DropdownItem>
         </Link>
       );
     });
