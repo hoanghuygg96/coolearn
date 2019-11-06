@@ -2,7 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 // import reactstrap
-import { TabContent, TabPane, Nav, NavItem, NavLink } from "reactstrap";
+import {
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink,
+  Spinner
+} from "reactstrap";
 import classnames from "classnames";
 
 // import component
@@ -13,7 +20,8 @@ class CourseList extends Component {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = {
-      activeTab: "1"
+      activeTab: "1",
+      loading: true
     };
   }
 
@@ -52,7 +60,15 @@ class CourseList extends Component {
         <Nav tabs>{listTabs}</Nav>
 
         {/* content*/}
-        <TabContent activeTab={this.state.activeTab}>{tabContent}</TabContent>
+        <TabContent activeTab={this.state.activeTab}>
+          {this.props.listCourses.length === 0 ? (
+            <div className="courses__list__spinning">
+              <Spinner />
+            </div>
+          ) : (
+            tabContent
+          )}
+        </TabContent>
       </div>
     );
   }

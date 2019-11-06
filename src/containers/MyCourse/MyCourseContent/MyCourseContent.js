@@ -8,12 +8,30 @@ import { unsubCoures } from "../../../Actions/courses";
 import { getUserDetail } from "../../../Actions/users";
 
 import swal from "sweetalert";
+import { Spinner } from "reactstrap";
 
 class MyCourseContent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      maKhoaHoc: "",
+      loading: false,
+      loadingList: true
+    };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ loadingList: false });
+    }, 4000);
+  }
+
   onUnsub = maKhoaHoc => {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const { taiKhoan } = currentUser;
     const { listMyCourseProps, listMyCourse } = this.props;
+
+    this.setState({ maKhoaHoc: maKhoaHoc });
 
     swal({
       title: "Bạn thật sự muốn hủy khóa học này?",
@@ -21,6 +39,12 @@ class MyCourseContent extends Component {
       buttons: true,
       dangerMode: true
     }).then(willDelete => {
+      this.setState({ loading: true });
+      setTimeout(() => {
+        if (this.state.loading) {
+          this.setState({ loading: false });
+        }
+      }, 10000);
       if (willDelete) {
         unsubCoures(
           {
@@ -28,6 +52,8 @@ class MyCourseContent extends Component {
             taiKhoan
           },
           () => {
+            this.setState({ loading: false });
+
             swal("Hủy khóa học thành công", {
               icon: "success"
             });
@@ -41,15 +67,19 @@ class MyCourseContent extends Component {
             this.props.history.push("/my-course");
           }
         );
+      } else {
+        this.setState({ loading: false });
       }
     });
   };
 
   render() {
+    const { loading, loadingList, maKhoaHoc } = this.state;
     const { listMyCourseProps } = this.props;
     const listCourse = listMyCourseProps.map(el => (
       <div key={el.maKhoaHoc}>
         <MyCourseItem
+          loading={maKhoaHoc === el.maKhoaHoc ? loading : null}
           maKhoaHoc={el.maKhoaHoc}
           tenKhoaHoc={el.tenKhoaHoc}
           hinhAnh={el.hinhAnh}
@@ -61,9 +91,16 @@ class MyCourseContent extends Component {
     ));
     return (
       <div className="allcourses__container">
-        <p>{listMyCourseProps.length} khóa học</p>
-
-        <div className="mycourse__container--content">{listCourse}</div>
+        {loadingList ? (
+          <div className="allcourses__container__spinning">
+            <Spinner />
+          </div>
+        ) : (
+          <>
+            <p>{listMyCourseProps.length} khóa học</p>
+            <div className="mycourse__container--content">{listCourse}</div>
+          </>
+        )}
       </div>
     );
   }

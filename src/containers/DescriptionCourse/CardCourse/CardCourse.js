@@ -9,7 +9,7 @@ import { listMyCourse } from "../../../Actions/courses";
 import { Link } from "react-router-dom";
 import ImgReplace from "../../../assets/img/img_replace.PNG";
 
-import { Progress } from "reactstrap";
+import { Progress, Spinner } from "reactstrap";
 
 import swal from "sweetalert";
 
@@ -19,7 +19,8 @@ class CardCourse extends Component {
     this.state = {
       taiKhoan: "",
       isSubPage: false,
-      historyUrl: "/"
+      historyUrl: "/",
+      loading: false
     };
   }
 
@@ -43,6 +44,13 @@ class CardCourse extends Component {
 
   onEnroll = e => {
     e.preventDefault();
+    this.setState({ loading: true });
+
+    setTimeout(() => {
+      if (this.state.loading) {
+        this.setState({ loading: false });
+      }
+    }, 10000);
 
     const { taiKhoan } = this.state;
     const {
@@ -63,6 +71,7 @@ class CardCourse extends Component {
           icon: "success",
           button: "Đóng"
         });
+        this.setState({ loading: false });
 
         getUserDetail(taiKhoan, res => {
           listMyCourse([...listMyCourseProps, courseDetail]);
@@ -162,6 +171,7 @@ class CardCourse extends Component {
 
   render() {
     const { hinhAnh, maKhoaHoc } = this.props.courseDetail;
+    const { loading } = this.state;
 
     const cardBtn = !this.state.isSubPage ? (
       <div className="descourse__btn">
@@ -198,8 +208,13 @@ class CardCourse extends Component {
               Thêm vào giỏ hàng
             </button>
 
-            <button className="descourse__btn-sub" onClick={this.onEnroll}>
-              Ghi danh
+            <button
+              className="descourse__btn-sub"
+              onClick={this.onEnroll}
+              disabled={loading}
+            >
+              {loading && <Spinner style={{ marginRight: "1.4rem" }} />} Ghi
+              danh
             </button>
           </div>
         ) : (

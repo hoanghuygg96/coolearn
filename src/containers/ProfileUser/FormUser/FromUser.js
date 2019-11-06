@@ -5,6 +5,7 @@ import { setCurrentUser } from "../../../Actions/users";
 import { connect } from "react-redux";
 
 import swal from "sweetalert";
+import { Spinner } from "reactstrap";
 
 class FromUser extends Component {
   constructor(props) {
@@ -15,7 +16,9 @@ class FromUser extends Component {
       soDT: "",
       email: "",
       maLoaiNguoiDung: "",
-      maNhom: maNhom
+      maNhom: maNhom,
+
+      loading: false
     };
   }
 
@@ -40,6 +43,15 @@ class FromUser extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+
+    this.setState({ loading: true });
+
+    setTimeout(() => {
+      if (this.state.loading) {
+        this.setState({ loading: false });
+      }
+    }, 10000);
+
     const {
       taiKhoan,
       hoTen,
@@ -62,6 +74,8 @@ class FromUser extends Component {
           matKhau
         },
         () => {
+          this.setState({ loading: false });
+
           const currentUser = JSON.parse(localStorage.getItem("currentUser"));
           this.props.setCurrentUser(currentUser);
           swal({
@@ -75,6 +89,8 @@ class FromUser extends Component {
   };
 
   render() {
+    const { loading } = this.state;
+
     return (
       <React.Fragment>
         <form onSubmit={this.onSubmit} className="profile__form">
@@ -138,7 +154,10 @@ class FromUser extends Component {
           </div>
 
           <div className="profile__button">
-            <button className="profile__button-bottom">Lưu thông tin</button>
+            <button className="profile__button-bottom" disabled={loading}>
+              {loading && <Spinner style={{ marginRight: "1.4rem" }} />}Lưu
+              thông tin
+            </button>
           </div>
         </form>
       </React.Fragment>

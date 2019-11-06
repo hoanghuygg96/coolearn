@@ -4,6 +4,7 @@ import { editUser, setCurrentUser } from "../../../Actions/users";
 import { maNhom } from "../../../MaNhom/MaNhom";
 
 import swal from "sweetalert";
+import { Spinner } from "reactstrap";
 
 class FromPassword extends Component {
   constructor(props) {
@@ -17,7 +18,9 @@ class FromPassword extends Component {
       maNhom: maNhom,
 
       matKhau: "",
-      nhapLaiMatKhau: ""
+      nhapLaiMatKhau: "",
+
+      loading: false
     };
   }
 
@@ -44,6 +47,14 @@ class FromPassword extends Component {
   onSubmit = e => {
     e.preventDefault();
 
+    this.setState({ loading: true });
+
+    setTimeout(() => {
+      if (this.state.loading) {
+        this.setState({ loading: false });
+      }
+    }, 10000);
+
     if (this.state.matKhau === this.state.nhapLaiMatKhau) {
       const {
         taiKhoan,
@@ -58,6 +69,7 @@ class FromPassword extends Component {
       editUser(
         { taiKhoan, hoTen, soDT, maLoaiNguoiDung, email, maNhom, matKhau },
         () => {
+          this.setState({ loading: false });
           swal({
             title: "Đổi mật khẩu thành công",
             icon: "success",
@@ -83,6 +95,7 @@ class FromPassword extends Component {
   };
 
   render() {
+    const { loading } = this.state;
     return (
       <form onSubmit={this.onSubmit} className="profile__form">
         <div className="profile__flex">
@@ -120,7 +133,10 @@ class FromPassword extends Component {
           </div>
         </div>
         <div className="profile__button">
-          <button className="profile__button-bottom">Đổi mật khẩu</button>
+          <button className="profile__button-bottom" disabled={loading}>
+            {loading && <Spinner style={{ marginRight: "1.4rem" }} />}Đổi mật
+            khẩu
+          </button>
         </div>
       </form>
     );

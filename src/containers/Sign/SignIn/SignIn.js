@@ -2,18 +2,17 @@ import React, { Component } from "react";
 import { signin, setCurrentUser, getUserDetail } from "../../../Actions/users";
 
 import { connect } from "react-redux";
-
-const initialState = {
-  taiKhoan: "",
-  matKhau: "",
-  taiKhoanError: "",
-  matKhauError: ""
-};
+import { Spinner } from "reactstrap";
 
 class SignIn extends Component {
   constructor(props) {
     super(props);
-    this.state = initialState;
+    this.state = {
+      taiKhoan: "",
+      matKhau: "",
+
+      loading: false
+    };
   }
 
   onChange = e => {
@@ -22,34 +21,20 @@ class SignIn extends Component {
     });
   };
 
-  validate = () => {
-    let taiKhoanError = "";
-    let matKhauError = "";
-
-    if (!this.state.taiKhoan) {
-      taiKhoanError = "Tài khoản không để trống";
-    }
-
-    if (!this.state.matKhau) {
-      matKhauError = "Mật khẩu không để trống";
-    }
-
-    if (taiKhoanError || matKhauError) {
-      this.setState({ taiKhoanError, matKhauError });
-      return false;
-    }
-
-    return true;
-  };
-
   onSubmit = e => {
     e.preventDefault();
-    // const isValid = this.validate();
 
     const { taiKhoan, matKhau } = this.state;
+    this.setState({ loading: true });
 
-    // if (isValid) {
+    setTimeout(() => {
+      if (this.state.loading) {
+        this.setState({ loading: false });
+      }
+    }, 10000);
+
     signin({ taiKhoan, matKhau }, user => {
+      this.setState({ loading: false });
       getUserDetail(user.taiKhoan, () => {
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -62,11 +47,11 @@ class SignIn extends Component {
         this.props.history.push("/admin");
       }
     });
-    this.setState(initialState);
-    // }
   };
 
   render() {
+    const { loading } = this.state;
+
     return (
       <div className="signin">
         <div className="signin__content">
@@ -118,7 +103,10 @@ class SignIn extends Component {
               </div>
 
               <div className="signin__button">
-                <button className="my-button my-button-full">Đăng nhập</button>
+                <button className="my-button my-button-full" disabled={loading}>
+                  {loading && <Spinner style={{ marginRight: "1.4rem" }} />}Đăng
+                  nhập
+                </button>
               </div>
             </div>
           </form>

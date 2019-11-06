@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import ImgReplace from "../../../assets/img/img_replace.PNG";
-
+import { Spinner } from "reactstrap";
 const MyCourseItem = props => {
   const addDefaultSrc = ev => {
     ev.target.src = ImgReplace;
@@ -44,7 +44,8 @@ const MyCourseItem = props => {
           onClick={props.onUnsub}
           type="button"
         >
-          Hủy khóa học
+          {props.loading && <Spinner style={{ marginRight: "1.4rem" }} />} Hủy
+          khóa học
         </button>
       </div>
     </div>

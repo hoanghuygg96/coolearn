@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { signup } from "../../../Actions/users";
 import { maNhom } from "../../../MaNhom/MaNhom";
+import { Spinner } from "reactstrap";
 
 class SignUp extends Component {
   constructor(props) {
@@ -13,60 +14,9 @@ class SignUp extends Component {
       email: "",
       maNhom: maNhom,
 
-      taiKhoanError: "",
-      matKhauError: "",
-      hoTenError: "",
-      soDTError: "",
-      emailError: ""
+      loading: false
     };
   }
-
-  validate = () => {
-    let taiKhoanError = "";
-    let matKhauError = "";
-    let hoTenError = "";
-    let soDTError = "";
-    let emailError = "";
-
-    if (!this.state.taiKhoan) {
-      taiKhoanError = "Tài khoản không để trống";
-    }
-
-    if (!this.state.matKhau) {
-      matKhauError = "Mật khẩu không để trống";
-    }
-
-    if (!this.state.hoTen) {
-      hoTenError = "Họ tên không để trống";
-    }
-
-    if (!/^\d+$/.test(this.state.soDT)) {
-      soDTError = "Số điện thoại không được chứa ký tự";
-    }
-
-    if (!this.state.email.includes("@")) {
-      emailError = "Email không hợp lệ";
-    }
-
-    if (
-      taiKhoanError ||
-      matKhauError ||
-      hoTenError ||
-      soDTError ||
-      emailError
-    ) {
-      this.setState({
-        taiKhoanError,
-        matKhauError,
-        hoTenError,
-        soDTError,
-        emailError
-      });
-      return false;
-    }
-
-    return true;
-  };
 
   onChange = e => {
     this.setState({
@@ -77,18 +27,26 @@ class SignUp extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    // const isValid = this.validate();
+    this.setState({ loading: true });
+
+    setTimeout(() => {
+      if (this.state.loading) {
+        this.setState({ loading: false });
+      }
+    }, 10000);
 
     const { taiKhoan, matKhau, hoTen, soDT, email, maNhom } = this.state;
     console.log({ taiKhoan, matKhau, hoTen, soDT, email, maNhom });
-    // if (isValid) {
+
     signup({ taiKhoan, matKhau, hoTen, soDT, email, maNhom }, () => {
       this.props.history.push("/signin");
+      this.setState({ loading: false });
     });
-    // }
   };
 
   render() {
+    const { loading } = this.state;
+
     return (
       <div className="signup">
         <div className="signup__content">
@@ -189,7 +147,10 @@ class SignUp extends Component {
             </div>
 
             <div className="signup__button">
-              <button className="my-button my-button-full">Đăng ký</button>
+              <button className="my-button my-button-full" disabled={loading}>
+                {loading && <Spinner style={{ marginRight: "1.4rem" }} />}Đăng
+                ký
+              </button>
             </div>
           </form>
         </div>

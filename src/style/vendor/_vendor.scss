@@ -98,3 +98,11 @@ a:not([href]):not([tabindex]):focus {
 .navbar-expand-md .navbar-nav .nav-link {
   padding: 0;
 }
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: $color-primary;
+  outline: none;
+}
