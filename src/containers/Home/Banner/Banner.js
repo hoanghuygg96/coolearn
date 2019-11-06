@@ -1,8 +1,8 @@
 import React from "react";
 
-import { ReactComponent as SchoolLogo } from "../../../assets/SVG/school.svg";
-import { ReactComponent as GobalLogo } from "../../../assets/SVG/public.svg";
-import { ReactComponent as AlarmLogo } from "../../../assets/SVG/access_alarms.svg";
+// import { ReactComponent as SchoolLogo } from "../../../assets/SVG/school.svg";
+// import { ReactComponent as GobalLogo } from "../../../assets/SVG/public.svg";
+// import { ReactComponent as AlarmLogo } from "../../../assets/SVG/access_alarms.svg";
 
 import { Link } from "react-router-dom";
 
@@ -10,45 +10,140 @@ const Banner = () => {
   return (
     <div className="ban">
       <div className="banner__icon">
-        <a href="https://play.google.com" target="_blank">
+        <a
+          href="https://play.google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <div className="banner__icon--playstore"></div>
         </a>
-        <a href="https://itunes.apple.com" target="_blank">
+        <a
+          href="https://itunes.apple.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <div className="banner__icon--ios"></div>
         </a>
         <Link to="learnonweb">
           <div className="banner__icon--web"></div>
         </Link>
       </div>
-      <div className="banner">
-        <div className="banner__item">
-          <SchoolLogo />
-          <h3 className="heading-teriary u-margin-top-small u-margin-bottom-small u-padding-bottom-small">
-            100+ khóa học online
-          </h3>
-          <p className="banner__item--text ">
-            Các khóa học được cập nhật liên tục & đạt chuẩn quốc tế
-          </p>
-        </div>
 
-        <div className="banner__item">
-          <GobalLogo />
-          <h3 className="heading-teriary u-margin-top-small u-margin-bottom-small u-padding-bottom-small">
-            Giảng viên tận tình
-          </h3>
-          <p className="banner__item--text ">
-            Tìm một người hướng dẫn phù hợp & đồng hành cùng bạn
-          </p>
-        </div>
+      <div className="ban__1">
+        <hr />
+        <h2>Các gói ưu đãi</h2>
+        <div className="banner">
+          <div className="banner__item">
+            <div className="banner__item__side banner__item__side--front">
+              <div className="banner__item__picture banner__item__picture--1">
+                &nbsp;
+              </div>
 
-        <div className="banner__item">
-          <AlarmLogo />
-          <h3 className="heading-teriary u-margin-top-small u-margin-bottom-small u-padding-bottom-small">
-            Linh hoạt về thời gian
-          </h3>
-          <p className="banner__item--text ">
-            Học tập với thời gian linh hoạt, chủ động & phù hợp với lịch trình
-          </p>
+              <h4 className="banner__item__heading">
+                <span className=" banner__item__heading-span banner__item__heading-span--1">
+                  Gói Sơ Cấp
+                </span>
+              </h4>
+
+              <div className="banner__item__details">
+                <ul>
+                  <li>3 tháng</li>
+                  <li>Tối đa 20 người</li>
+                  <li>2 khóa học</li>
+                </ul>
+              </div>
+            </div>
+
+            <div
+              className="banner__item__side 
+            banner__item__side--back
+            banner__item__side--back-1"
+            >
+              <div className="banner__item__cta">
+                <div className="banner__item__price-box">
+                  <p className="banner__item__price-only">Chỉ với</p>
+                  <p className="banner__item__price-value">10 triệu đồng</p>
+                </div>
+                <Link to="signinnow" className="banner__item__btn">
+                  Đăng ký ngay!
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="banner__item">
+            <div className="banner__item__side banner__item__side--front">
+              <div className="banner__item__picture banner__item__picture--2">
+                &nbsp;
+              </div>
+
+              <h4 className="banner__item__heading">
+                <span className=" banner__item__heading-span banner__item__heading-span--2">
+                  Gói V.I.P
+                </span>
+              </h4>
+
+              <div className="banner__item__details">
+                <ul>
+                  <li>7 tháng</li>
+                  <li>Tối đa 40 người</li>
+                  <li>6 khóa học</li>
+                </ul>
+              </div>
+            </div>
+
+            <div
+              className="banner__item__side
+            banner__item__side--back banner__item__side--back-2"
+            >
+              <div className="banner__item__cta">
+                <div className="banner__item__price-box">
+                  <p className="banner__item__price-only">Chỉ với</p>
+                  <p className="banner__item__price-value">30 triệu đồng</p>
+                </div>
+                <Link to="signinnow" className="banner__item__btn">
+                  Đăng ký ngay!
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="banner__item">
+            <div className="banner__item__side banner__item__side--front">
+              <div className="banner__item__picture banner__item__picture--3">
+                &nbsp;
+              </div>
+
+              <h4 className="banner__item__heading">
+                <span className=" banner__item__heading-span banner__item__heading-span--3">
+                  Gói Trung Cấp
+                </span>
+              </h4>
+
+              <div className="banner__item__details">
+                <ul>
+                  <li>5 tháng</li>
+                  <li>Tối đa 30 người</li>
+                  <li>2 khóa học</li>
+                </ul>
+              </div>
+            </div>
+
+            <div
+              className="banner__item__side 
+            banner__item__side--back banner__item__side--back-3"
+            >
+              <div className="banner__item__cta">
+                <div className="banner__item__price-box">
+                  <p className="banner__item__price-only">Chỉ với</p>
+                  <p className="banner__item__price-value">20 triệu đồng</p>
+                </div>
+                <Link to="signinnow" className="banner__item__btn">
+                  Đăng ký ngay!
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

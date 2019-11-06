@@ -8,7 +8,6 @@
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
     "firebase-tools": "^7.5.0",
-    "form-data": "^2.5.1",
     "lodash": "^4.17.15",
     "node-sass": "^4.12.0",
     "path": "^0.12.7",
