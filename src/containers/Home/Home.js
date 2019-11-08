@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Banner from "./Banner/Banner";
 import Courses from "./Courses/Courses";
 import Testimonials from "./Testimonials/Testimonials";
-// import Subscribe from "./Subscribe/Subscribe";
+import Info from "./Info/Info";
 import Minimalist from "./Minimalist/Minimalist";
 
 class Home extends Component {
@@ -15,6 +15,7 @@ class Home extends Component {
         <Courses />
         {/* <Subscribe /> */}
         <Testimonials />
+        <Info />
         <Minimalist />
       </React.Fragment>
     );

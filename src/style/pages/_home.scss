@@ -16,6 +16,8 @@
     width: 72.5rem;
     font-weight: bold;
     margin-top: 25px;
+
+    animation: moveInLeft 1s ease-out;
   }
 
   &__header--sub {
@@ -23,6 +25,8 @@
     padding-top: 15px;
     font-weight: bold;
     padding-bottom: 30px;
+
+    animation: moveInRight 1s ease-out;
   }
 
   &__btn {
@@ -39,6 +43,9 @@
     width: 25rem;
     transition: all 0.3s;
     margin-bottom: 7.5rem;
+
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards;
 
     &:hover {
       background-color: $color-primary-dark;
@@ -176,6 +183,13 @@
 }
 
 // banner item
+
+.banner__item__animation {
+  animation-name: pulse;
+  animation-fill-mode: both;
+  animation-duration: 1s;
+}
+
 .banner__item {
   perspective: 150rem;
   position: relative;
@@ -460,6 +474,10 @@
     width: 230px;
     transition: all 0.3s;
 
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+
     @media only screen and (max-width: $bp-largest) {
       width: 21rem;
     }
@@ -539,6 +557,25 @@
     padding: 25px;
     height: 190px;
     transition: all 0.3s;
+    opacity: 0;
+
+    &--animation-1 {
+      animation-delay: 1s;
+      animation: moveInBottom 1s;
+      animation-fill-mode: both;
+    }
+
+    &--animation-2 {
+      animation-delay: 2s;
+      animation: moveInBottom 1s;
+      animation-fill-mode: both;
+    }
+
+    &--animation-3 {
+      animation-delay: 3s;
+      animation: moveInBottom 1s;
+      animation-fill-mode: both;
+    }
 
     &:hover {
       border-color: #24aa98;
@@ -598,6 +635,9 @@
     margin-top: 25px;
     overflow: hidden;
     text-align: center;
+    animation-fill-mode: both;
+    opacity: 0;
+
     & img {
       border-radius: 25px;
       overflow: hidden;
@@ -605,6 +645,24 @@
       margin-left: auto;
       margin-right: auto;
       display: block;
+    }
+    &--animation {
+      animation-duration: 1s;
+    }
+
+    &--animation-1 {
+      animation-delay: 0s;
+      animation-name: fadeInUp;
+    }
+
+    &--animation-2 {
+      animation-delay: 0.2s;
+      animation-name: fadeInUp;
+    }
+
+    &--animation-3 {
+      animation-delay: 0.4s;
+      animation-name: fadeInUp;
     }
   }
 
@@ -681,6 +739,75 @@
       &:hover {
         background-color: $color-primary-dark;
       }
+    }
+  }
+}
+
+.info {
+  background: linear-gradient(180deg, #414e53 70%, #3a464b 30%);
+
+  &__number {
+    width: 120px;
+    display: inline-block;
+
+    &-2 {
+      width: 96px;
+    }
+  }
+
+  &__content {
+    width: 100rem;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 25px;
+    padding-bottom: 35px;
+
+    &--user {
+      margin-bottom: 30px;
+      text-align: center;
+
+      display: flex;
+      justify-content: center;
+
+      & p {
+        padding: 0 2rem;
+        color: #d6d6d6;
+        font-size: 1.7rem;
+        margin-bottom: 0;
+        & span {
+          font-weight: bold;
+          font-size: 3.5rem;
+          color: #8bc34a;
+        }
+      }
+    }
+  }
+
+  &__content--top {
+    display: flex;
+    justify-content: space-between;
+    width: 73rem;
+    margin: 0 auto;
+  }
+
+  &__content--phoneimg {
+    & img {
+      width: 40rem;
+    }
+  }
+
+  &__content--main-title {
+    & span {
+      font-weight: bold;
+      color: #fff;
+      font-size: 2.4rem;
+    }
+
+    & p {
+      color: #d6d6d6;
+      font-size: 1.5em;
+      line-height: 1.8;
+      margin-top: 10px;
     }
   }
 }

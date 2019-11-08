@@ -1,12 +1,11 @@
-import React from "react";
-
-// import { ReactComponent as SchoolLogo } from "../../../assets/SVG/school.svg";
-// import { ReactComponent as GobalLogo } from "../../../assets/SVG/public.svg";
-// import { ReactComponent as AlarmLogo } from "../../../assets/SVG/access_alarms.svg";
+import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
+import { Waypoint } from "react-waypoint";
 
 const Banner = () => {
+  const [point, setPoint] = useState(false);
+
   return (
     <div className="ban">
       <div className="banner__icon">
@@ -71,7 +70,11 @@ const Banner = () => {
             </div>
           </div>
 
-          <div className="banner__item">
+          <div
+            className={
+              point ? "banner__item banner__item__animation" : "banner__item"
+            }
+          >
             <div className="banner__item__side banner__item__side--front">
               <div className="banner__item__picture banner__item__picture--2">
                 &nbsp;
@@ -82,19 +85,20 @@ const Banner = () => {
                   Gói V.I.P
                 </span>
               </h4>
-
-              <div className="banner__item__details">
-                <ul>
-                  <li>7 tháng</li>
-                  <li>Tối đa 40 người</li>
-                  <li>6 khóa học</li>
-                </ul>
-              </div>
+              <Waypoint onEnter={() => setPoint(true)}>
+                <div className="banner__item__details">
+                  <ul>
+                    <li>7 tháng</li>
+                    <li>Tối đa 40 người</li>
+                    <li>6 khóa học</li>
+                  </ul>
+                </div>
+              </Waypoint>
             </div>
 
             <div
               className="banner__item__side
-            banner__item__side--back banner__item__side--back-2"
+              banner__item__side--back banner__item__side--back-2"
             >
               <div className="banner__item__cta">
                 <div className="banner__item__price-box">

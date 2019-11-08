@@ -19,8 +19,18 @@ import Review_1 from "../../../assets/img/review-1.jpeg";
 import Review_2 from "../../../assets/img/review-2.jpeg";
 import Review_3 from "../../../assets/img/review-3.jpeg";
 
+import { Waypoint } from "react-waypoint";
+
 class Testimonials extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      point: false
+    };
+  }
+
   render() {
+    const { point } = this.state;
     return (
       <div className="testimonials">
         <div className="testimonials__content">
@@ -44,8 +54,19 @@ class Testimonials extends Component {
             </a>
           </div>
         </div>
+
         <div className="testimonials__feelback">
           <TestimonialItem
+            animation={
+              point
+                ? "testimonials__text--animation testimonials__text--animation-1"
+                : ""
+            }
+            animationInfo={
+              point
+                ? "testimonials__info--animation testimonials__info--animation-1"
+                : ""
+            }
             picture={Review_1}
             text="Đây lầ trung tâm đào tạo tốt nhất tôi từng tham gia, khóa học tốt có giá hợp lý, đây là cách mạng trong việc dạy online."
             name="Trần"
@@ -53,6 +74,16 @@ class Testimonials extends Component {
           />
 
           <TestimonialItem
+            animation={
+              point
+                ? "testimonials__text--animation testimonials__text--animation-2"
+                : ""
+            }
+            animationInfo={
+              point
+                ? "testimonials__info--animation testimonials__info--animation-2"
+                : ""
+            }
             picture={Review_2}
             text="HAY QUÁ ... hay quá là hay, khóa học đơn giản, và vui, tổ chức bài giảng hợp lý, tôi có thể tìm thấy tất cả các thứ cần học ở đây mà không cần đi đâu xa."
             name="Hoàng"
@@ -60,12 +91,27 @@ class Testimonials extends Component {
           />
 
           <TestimonialItem
+            animation={
+              point
+                ? "testimonials__text--animation testimonials__text--animation-3"
+                : ""
+            }
+            animationInfo={
+              point
+                ? "testimonials__info--animation testimonials__info--animation-3"
+                : ""
+            }
             picture={Review_3}
             text="Thật là tuyệt vời. Khóa học dạy từng bước rất cẩn thận. Tôi sẽ học nhiều nhiều hơn nữa từ hôm nay. Hãy tiếp tục phát huy."
             name="Huy"
             locate="Full Stack"
           />
         </div>
+        <Waypoint
+          onEnter={() => {
+            this.setState({ point: true });
+          }}
+        />
       </div>
     );
   }
