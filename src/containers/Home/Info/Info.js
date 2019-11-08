@@ -35,7 +35,7 @@ const Info = () => {
                     <span
                       ref={countUpRef}
                       className="info__number info__number-2"
-                    />
+                    />{" "}
                     Khóa học
                     <Waypoint onEnter={start} />
                   </div>
@@ -92,7 +92,9 @@ const Info = () => {
       </div>
       <Waypoint
         onEnter={() => {
-          setPoint(true);
+          setTimeout(() => {
+            setPoint(true);
+          }, 4000);
         }}
       />
     </div>
