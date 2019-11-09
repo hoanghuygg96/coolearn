@@ -58,10 +58,12 @@ class CardCarousel extends Component {
       ]
     };
 
+    let index = 0;
     const renderCourseItems = this.props.courses.map(item => {
       const danhMucKhoaHoc = item.danhMucKhoaHoc ? item.danhMucKhoaHoc : null;
 
       if (danhMucKhoaHoc.maDanhMucKhoahoc === this.props.maDanhMuc) {
+        index += 0.1;
         return (
           <div key={item.maKhoaHoc}>
             <Link
@@ -69,6 +71,7 @@ class CardCarousel extends Component {
               style={{ textDecoration: "none" }}
             >
               <Card
+                animationDelay={`${index}s`}
                 maKhoaHoc={item.maKhoaHoc}
                 hinhAnh={item.hinhAnh}
                 tenKhoaHoc={item.tenKhoaHoc}

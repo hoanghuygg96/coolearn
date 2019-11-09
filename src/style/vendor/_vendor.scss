@@ -4,6 +4,7 @@
   // padding-bottom: 1rem;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 25px;
 }
 
 .nav-tabs .nav-link {
@@ -38,7 +39,7 @@
 }
 
 .tab-content {
-  height: 340px;
+  height: 315px;
 }
 
 a:not([href]):not([tabindex]):hover,

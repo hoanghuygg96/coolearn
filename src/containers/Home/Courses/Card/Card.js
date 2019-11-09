@@ -9,13 +9,18 @@ class Card extends Component {
   };
   render() {
     return (
-      <div className="courses__card">
+      <div
+        className="courses__card"
+        style={{ animationDelay: this.props.animationDelay }}
+      >
         <div className="courses__card--img">
-          <img
-            src={this.props.hinhAnh}
-            alt="star-icon"
-            onError={this.addDefaultSrc}
-          />
+          <figure>
+            <img
+              src={this.props.hinhAnh}
+              alt="star-icon"
+              onError={this.addDefaultSrc}
+            />
+          </figure>
         </div>
         <div className="courses__card-content">
           <h4>{this.props.tenKhoaHoc}</h4>

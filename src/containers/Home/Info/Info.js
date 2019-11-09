@@ -13,7 +13,7 @@ const Info = () => {
         <div className="info__content--user">
           <p>
             {!point ? (
-              <CountUp end={25413} duration={4.25} separator=",">
+              <CountUp end={25413} duration={2.25} separator=",">
                 {({ countUpRef, start }) => (
                   <div>
                     <span ref={countUpRef} className="info__number" /> Học viên
@@ -29,7 +29,7 @@ const Info = () => {
           </p>
           <p>
             {!point ? (
-              <CountUp end={2154} duration={4.75} separator="">
+              <CountUp end={2154} duration={2.75} separator="">
                 {({ countUpRef, start }) => (
                   <div>
                     <span
@@ -50,13 +50,13 @@ const Info = () => {
           </p>
           <p>
             {!point ? (
-              <CountUp end={11523} duration={5} separator=",">
+              <CountUp end={11523} duration={3} separator=",">
                 {({ countUpRef, start }) => (
                   <div>
                     <span
                       ref={countUpRef}
                       className="info__number info__number-3"
-                    />
+                    />{" "}
                     Bài học
                     <Waypoint onEnter={start} />
                   </div>
@@ -94,7 +94,7 @@ const Info = () => {
         onEnter={() => {
           setTimeout(() => {
             setPoint(true);
-          }, 4000);
+          }, 3000);
         }}
       />
     </div>
