@@ -26,6 +26,7 @@ import NotFound from "./containers/NotFound/NotFound";
 // import MycoursesDetail from "./containers/MyCoursesDetail/MycoursesDetail";
 
 import ProtectedRoute from "./Auth/protected.route";
+import ButtonToTop from "./components/ButtonToTop/ButtonToTop";
 // import ProtectedUserRoute from "./Auth/protected.user.router";
 
 class App extends React.Component {
@@ -71,6 +72,7 @@ class App extends React.Component {
               <Route component={NotFound} />
             </Switch>
           </ScrollToTop>
+          <ButtonToTop />
           <Footer />
         </Router>
       </React.Fragment>
