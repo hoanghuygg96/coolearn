@@ -12,7 +12,6 @@ export const doSub = (data, callback) => {
   api
     .post("/QuanLyKhoaHoc/GhiDanhKhoaHoc", data)
     .then(res => {
-      console.log(res.data);
       swal({
         title: "Ghi danh khóa học thành công",
         icon: "success",
@@ -22,7 +21,6 @@ export const doSub = (data, callback) => {
       if (callback) callback(res.data);
     })
     .catch(err => {
-      console.log(err);
       swal({
         title: "Ghi danh khóa học thất bại",
         icon: "error",
@@ -40,7 +38,6 @@ export const doUnsub = (data, callback) => {
   api
     .post("/QuanLyKhoaHoc/HuyGhiDanh", data)
     .then(res => {
-      console.log(res.data);
       swal({
         title: "Hủy ghi danh thành công",
         icon: "success",
@@ -49,7 +46,6 @@ export const doUnsub = (data, callback) => {
       if (callback) callback(res.data);
     })
     .catch(err => {
-      console.log(err);
       swal({
         title: "Hủy ghi danh thất bại",
         icon: "error",
@@ -73,7 +69,6 @@ export const addCourses = (data, callback) => {
   api
     .post("/QuanLyKhoaHoc/ThemKhoaHoc", data)
     .then(res => {
-      console.log(res.data);
       swal({
         title: "Thêm khóa học thành công",
         icon: "success",
@@ -83,7 +78,6 @@ export const addCourses = (data, callback) => {
       if (callback) callback(res.data);
     })
     .catch(err => {
-      console.log(err);
       swal({
         title: "Thêm khóa học thất bại",
         icon: "error",
@@ -100,8 +94,6 @@ export const upImg = (data, callback) => {
   api
     .post("/QuanLyKhoaHoc/UploadHinhAnhKhoaHoc", data)
     .then(res => {
-      console.log(res.data);
-
       if (callback) callback(res.data);
     })
     .catch(err => {
@@ -118,7 +110,6 @@ export const editCourses = (data, callback) => {
   api
     .put("/QuanLyKhoaHoc/CapNhatKhoaHoc", data)
     .then(res => {
-      console.log(res.data);
       swal({
         title: "Sửa khóa học thành công",
         icon: "success",
@@ -141,7 +132,6 @@ export const deleteCourses = (maKhoaHoc, callback) => {
   api
     .delete(`/QuanLyKhoaHoc/XoaKhoaHoc?maKhoaHoc=${maKhoaHoc}`)
     .then(res => {
-      console.log(res.data);
       swal({
         title: "Xóa khóa học thành công",
         icon: "success",
@@ -150,7 +140,6 @@ export const deleteCourses = (maKhoaHoc, callback) => {
       if (callback) callback(res.data);
     })
     .catch(err => {
-      console.log(err);
       swal({
         title: err.response.data,
         icon: "error",
@@ -172,8 +161,6 @@ export const getCourseDetail = (maKhoaHoc, callback) => {
       params: { maKhoaHoc }
     })
     .then(res => {
-      console.log(res.data);
-
       if (callback) callback(res.data);
     })
     .catch(err => console.log(err));
@@ -196,13 +183,9 @@ export const courseDontUser = (maKhoaHoc, callback) => {
   api
     .post("/QuanLyNguoiDung/LayDanhSachNguoiDungChuaGhiDanh", { maKhoaHoc })
     .then(res => {
-      console.log(res.data);
-
       if (callback) callback(res.data);
     })
     .catch(err => {
-      console.log(err);
-
       swal({
         title: "Lấy danh sách học viên chưa ghi danh thất bại",
         icon: "error",
@@ -220,13 +203,9 @@ export const courseHaveUser = (maKhoaHoc, callback) => {
   api
     .post("/QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc", { maKhoaHoc })
     .then(res => {
-      console.log(res.data);
-
       if (callback) callback(res.data);
     })
     .catch(err => {
-      console.log(err);
-
       swal({
         title: "Lấy danh sách học viên khóa học thất bại",
         icon: "error",
@@ -244,7 +223,6 @@ export const subCourseForUser = (data, callback) => {
   api
     .post("/QuanLyKhoaHoc/GhiDanhKhoaHoc", data)
     .then(res => {
-      console.log(res.data);
       swal({
         title: "Ghi danh khóa học thành công",
         icon: "success",
@@ -253,7 +231,6 @@ export const subCourseForUser = (data, callback) => {
       if (callback) callback(res.data);
     })
     .catch(err => {
-      console.log(err);
       swal({
         title: "Ghi danh khóa học thất bại",
         icon: "error",
@@ -271,7 +248,6 @@ export const unsubCourseForUser = (data, callback) => {
   api
     .post("/QuanLyKhoaHoc/HuyGhiDanh", data)
     .then(res => {
-      console.log(res.data);
       swal({
         title: "Hủy ghi danh thành công thành công",
         icon: "success",
@@ -281,7 +257,6 @@ export const unsubCourseForUser = (data, callback) => {
       if (callback) callback(res.data);
     })
     .catch(err => {
-      console.log(err);
       swal({
         title: "Hủy ghi danh thất bại",
         icon: "error",

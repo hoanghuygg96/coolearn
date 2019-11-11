@@ -9,7 +9,6 @@ export const getCourses = callback => {
   api
     .get(`/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=${maNhom}`)
     .then(res => {
-      console.log(res.data);
       if (callback) callback(res.data);
     })
     .catch(err => console.log(err));
@@ -30,8 +29,6 @@ export const getCourseDetail = (maKhoaHoc, callback) => {
       params: { maKhoaHoc }
     })
     .then(res => {
-      console.log(res.data);
-
       if (callback) callback(res.data);
     })
     .catch(err => console.log(err));
@@ -52,7 +49,6 @@ export const enrollCourse = (data, callback) => {
   api
     .post("/QuanLyKhoaHoc/DangKyKhoaHoc", data)
     .then(res => {
-      console.log(res.data);
       if (callback) callback();
     })
     .catch(err => {
@@ -68,8 +64,6 @@ export const unsubCoures = (data, callback) => {
   api
     .post("/QuanLyKhoaHoc/HuyGhiDanh", data)
     .then(res => {
-      console.log(res.data);
-
       // swal({
       //   title: "Hủy đăng ký khóa học thành công",
       //   icon: "success",
@@ -92,8 +86,6 @@ export const getListCourses = callback => {
   api
     .get("/QuanLyKhoaHoc/LayDanhMucKhoaHoc")
     .then(res => {
-      console.log(res.data);
-
       localStorage.setItem("listCourses", JSON.stringify(res.data));
 
       if (callback) callback(res.data);
@@ -114,7 +106,6 @@ export const getListCoursesSpecific = (maDanhMuc, callback) => {
       `/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${maDanhMuc}&MaNhom=${maNhom}`
     )
     .then(res => {
-      console.log(res.data);
       if (callback) callback(res.data);
     })
     .catch(err => console.log(err));
