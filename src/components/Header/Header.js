@@ -27,6 +27,8 @@ class Header extends Component {
   componentDidMount() {
     window.addEventListener("scroll", () => {
       const isTop = window.scrollY < 100;
+    
+
       if (isTop !== true) {
         this.setState({ scrolled: true });
       } else {
@@ -50,7 +52,7 @@ class Header extends Component {
     const showSlider = location.pathname === "/" ? <Slider /> : null;
     return (
       <div
-        className="header"
+        className={`header ${this.state.isOpen ? "header__is-open" : ""}`}
         style={{ backgroundImage: img, display: display }}
       >
         {/* start navbar */}

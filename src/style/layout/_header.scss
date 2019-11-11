@@ -1,7 +1,16 @@
 .header {
+  // @media screen and (max-width: $bp-largest) {
+  //   width: fit-content;
+  // }
+
+  @media only screen and (max-width: $bp-large-1) {
+    height: 45rem;
+    box-shadow: 0 0 1000px 1000px rgba(0, 0, 0, 0.5) inset;
+  }
+
   &__sticky {
     background-color: $color-dark;
-    width: 100%;
+    min-width: 100%;
     top: 0;
     z-index: 99;
 
@@ -11,17 +20,21 @@
     animation-duration: 0.3s;
     box-shadow: 0px 1px 6px 1px rgba(0, 0, 0, 0.53);
 
-    & .cart {
+    .navbar-toggler {
+      top: 15px;
+    }
+
+    .cart {
       height: 43px !important;
       width: 43px !important;
     }
 
-    & .cart-logo {
+    .cart-logo {
       width: 2rem;
       height: 2rem;
     }
 
-    & .header__brand {
+    .header__brand {
       font-size: 3rem;
 
       .header__brand-logo {
@@ -40,7 +53,11 @@
   }
 
   &__height {
-    height: 100px;
+    height: 88px;
+
+    @media only screen and (max-width: $bp-large-1) {
+      height: 45px;
+    }
   }
 
   background-color: #3a464b;
@@ -51,32 +68,37 @@
   background-size: cover;
 
   @media only screen and (max-width: $bp-large) {
-    width: 100rem;
+    background-position: right top;
   }
 
-  & .header__nav {
-    @media only screen and (max-width: $bp-medium) {
-      background-color: #174440de;
-      width: 98rem;
+  & .header__navbar {
+    @media only screen and (max-width: $bp-large-1) {
+      position: absolute;
+      top: 80px;
+      left: 0;
     }
-  }
-
-  .navbar-toggler {
-    background-color: teal;
   }
 
   &__content {
     height: 10rem;
     transition: all 0.3s;
     position: fixed;
-    width: 100%;
+    min-width: 100%;
     top: 0;
     z-index: 99;
+    padding: 0;
 
     &--main {
-      width: 100rem;
+      width: 75%;
       display: flex;
       margin: 0 auto;
+
+      @media screen and (max-width: $bp-largest) {
+        width: 95%;
+      }
+      @media screen and (max-width: $bp-large) {
+        width: 95%;
+      }
     }
   }
 
@@ -87,6 +109,26 @@
     align-items: center;
     color: white;
 
+    @media screen and (max-width: $bp-largest) {
+      font-size: 3rem;
+    }
+
+    @media screen and (max-width: $bp-large-1) {
+      position: fixed;
+      top: 5px;
+      left: 80px;
+
+      font-size: 4.5rem;
+    }
+
+    @media screen and (max-width: $bp-small) {
+      font-size: 3.5rem;
+    }
+
+    @media screen and (max-width: $bp-smallest) {
+      font-size: 2.5rem;
+    }
+
     &:hover {
       color: white;
       text-decoration: none;
@@ -96,14 +138,37 @@
       height: 4rem;
       width: 4rem;
       fill: #eeff2f;
+      @media screen and (max-width: $bp-largest) {
+        height: 3rem;
+        width: 3rem;
+      }
+
+      @media screen and (max-width: $bp-large-1) {
+        height: 4.5rem;
+        width: 4.5rem;
+      }
+
+      @media screen and (max-width: $bp-small) {
+        height: 3.5rem;
+        width: 3.5rem;
+      }
+
+      @media screen and (max-width: $bp-smallest) {
+        height: 2.5rem;
+        width: 2.5rem;
+      }
     }
   }
 
   &__nav {
-    width: 70rem;
+    width: 95%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media screen and (max-width: $bp-large) {
+      width: 98%;
+    }
   }
   // /* Dropdown Button */
 
@@ -119,6 +184,11 @@
     border-radius: 50%;
     height: 50px;
     width: 50px;
+
+    @media only screen and (max-width: $bp-large) {
+      display: block;
+      margin-right: 2rem;
+    }
 
     &__item {
       display: flex;
@@ -251,5 +321,73 @@
     padding-top: 5px;
     padding-bottom: 5px;
     margin-right: 1.5rem;
+  }
+}
+
+.cart-1 {
+  @media screen and (max-width: $bp-large-1) {
+    position: fixed;
+    top: 10px;
+    right: 15px;
+  }
+}
+
+.collapse:not(.show) {
+  @media screen and (max-width: $bp-large-1) {
+    display: block;
+  }
+}
+
+.header__is-open {
+  .header__navbar {
+    .header__categories,
+    .link-header,
+    .btn-pro,
+    .header__signin,
+    .header__signup {
+      @media screen and (max-width: $bp-large-1) {
+        display: block !important;
+        margin-bottom: 10px;
+      }
+    }
+
+    a,
+    button {
+      @media screen and (max-width: $bp-large-1) {
+        font-size: 3rem;
+      }
+    }
+  }
+}
+
+.header__navbar {
+  .header__categories,
+  .link-header,
+  .btn-pro,
+  .header__signin,
+  .header__signup {
+    @media screen and (max-width: $bp-large-1) {
+      display: none !important;
+    }
+  }
+}
+
+.header__nav {
+  @media screen and (max-width: $bp-large-1) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-left: 70px !important;
+    margin-right: 437px;
+  }
+}
+
+.header__sticky {
+  .header__navbar {
+    @media screen and (max-width: $bp-large-1) {
+      top: 53px;
+      background-color: #3a464b;
+    }
   }
 }

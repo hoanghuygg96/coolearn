@@ -5,19 +5,36 @@
   // background-size: cover;
   // overflow: hidden;
   &__content {
-    width: 100rem;
+    width: 75%;
     margin: 0 auto;
     color: white;
     font-size: 1.8rem;
+
+    @media screen and (max-width: $bp-large) {
+      width: 94%;
+    }
   }
 
   &__header {
     font-size: 3.5rem;
-    width: 72.5rem;
+    width: 80%;
     font-weight: bold;
     margin-top: 25px;
 
     animation: moveInLeft 1s ease-out;
+
+    @media screen and (max-width: $bp-large) {
+      font-size: 3rem;
+    }
+
+    @media screen and (max-width: $bp-large) {
+      font-size: 2.5rem;
+      padding-top: 6rem;
+    }
+
+    @media screen and (max-width: $bp-medium) {
+      font-size: 2.6rem;
+    }
   }
 
   &__header--sub {
@@ -38,9 +55,11 @@
     font-weight: bold;
     font-size: 1.7rem;
     padding: 1.2rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
     text-align: center;
     text-decoration: none;
-    width: 25rem;
+
     transition: all 0.3s;
     margin-bottom: 7.5rem;
 
@@ -84,6 +103,22 @@
 }
 
 .banner {
+  position: relative;
+  width: 75%;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: $bp-largest) {
+    width: 90%;
+  }
+
+  @media screen and (max-width: $bp-large) {
+    width: 65%;
+    flex-direction: column;
+  }
+
   &__icon {
     z-index: 2;
     top: -6%;
@@ -91,9 +126,13 @@
     transform: translate(-50%, -50%);
     position: absolute;
     margin: 25px auto;
-    width: 1000px;
+    width: 75%;
     display: flex;
     justify-content: center;
+
+    @media screen and (max-width: $bp-large) {
+      top: -3%;
+    }
 
     & a {
       display: inline-block;
@@ -134,6 +173,10 @@
       height: 49px;
       background-position: -260px -200px;
 
+      @media screen and (max-width: $bp-large) {
+        display: none;
+      }
+
       &:hover::after {
         position: absolute;
         left: 0;
@@ -155,6 +198,10 @@
       height: 49px;
       background-position: -260px -299px;
 
+      @media screen and (max-width: $bp-smallest) {
+        display: none;
+      }
+
       &::after {
         transition: all 10s;
         background: rgba(255, 255, 255, 0);
@@ -173,13 +220,6 @@
       }
     }
   }
-  position: relative;
-
-  width: 100rem;
-  margin: 0 auto;
-
-  display: flex;
-  justify-content: space-between;
 }
 
 // banner item
@@ -196,6 +236,16 @@
   height: 38rem;
   width: 28%;
   margin: 0 2rem;
+
+  @media screen and (max-width: $bp-largest) {
+    margin: 0;
+    width: 31%;
+  }
+
+  @media screen and (max-width: $bp-large) {
+    margin: 0;
+    width: 100%;
+  }
 
   &__side {
     height: 34rem;
@@ -270,6 +320,7 @@
     right: 2rem;
     width: 75%;
   }
+
   &__heading-span {
     padding: 1rem 1.5rem;
     box-decoration-break: clone;
@@ -370,16 +421,15 @@
 
 .courses {
   background: linear-gradient(180deg, $color-dark-light 70%, $color-dark 30%);
-  padding: 5rem 10rem;
-  padding-bottom: 3rem;
+  padding: 3rem 0;
 
   @media only screen and (max-width: $bp-largest) {
     padding-left: 5rem;
     padding-right: 5rem;
   }
-  @media only screen and (max-width: $bp-large) {
-    width: 100rem;
-  }
+  // @media only screen and (max-width: $bp-large) {
+  //   width: 100rem;
+  // }
 
   & figure {
     width: 230px;
@@ -408,7 +458,7 @@
 
   &__content {
     margin: 0 auto;
-    width: 100rem;
+    width: 75%;
 
     @media only screen and (max-width: $bp-largest) {
       width: 100%;
@@ -419,6 +469,18 @@
     background-color: #fff;
     border-radius: 3px;
     box-shadow: 0 1.5rem 4rem rgba(black, 0.15);
+
+    & .nav-link {
+      @media screen and (max-width: $bp-large) {
+        font-size: 1.2rem !important;
+      }
+    }
+
+    & .nav-tabs {
+      @media screen and (max-width: $bp-medium) {
+        flex-direction: column;
+      }
+    }
 
     &__spinning {
       width: 100%;
@@ -486,7 +548,7 @@
     animation-timing-function: ease-in-out;
 
     @media only screen and (max-width: $bp-largest) {
-      width: 21rem;
+      width: 23rem;
     }
 
     &-content {
@@ -551,12 +613,21 @@
   margin: 5rem 0;
   height: 45rem;
 
+  @media screen and (max-width: $bp-large) {
+    height: auto;
+    margin-bottom: 0;
+  }
+
   &__content {
     margin: 0 auto;
-    width: 100rem;
+    width: 75%;
     text-align: center;
     & p {
       font-size: 1.9rem;
+
+      @media screen and (max-width: $bp-largest) {
+        font-size: 1.6rem;
+      }
     }
 
     & strong {
@@ -572,6 +643,10 @@
     height: 190px;
     transition: all 0.3s;
     opacity: 0;
+
+    @media screen and (max-width: $bp-large) {
+      height: 13rem;
+    }
 
     &--animation-1 {
       animation-delay: 1s;
@@ -629,20 +704,37 @@
     & p {
       font-size: 1.5rem;
       text-align: left;
+
+      @media screen and (max-width: $bp-largest) {
+        font-size: 1.3rem;
+      }
     }
   }
 
   &__feelback {
-    width: 100rem;
+    width: 75%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+
+    @media screen and (max-width: $bp-largest) {
+      width: 90%;
+    }
+    @media screen and (max-width: $bp-large) {
+      width: 70%;
+      flex-direction: column;
+    }
   }
 
   &__item {
     width: 30%;
     height: 20rem;
     position: relative;
+
+    @media screen and (max-width: $bp-large) {
+      width: 100%;
+      margin-bottom: 10rem;
+    }
   }
 
   &__info {
@@ -718,9 +810,9 @@
   background-color: #eaedf1;
   padding: 5rem 0;
 
-  @media only screen and (max-width: $bp-large) {
-    width: 100rem;
-  }
+  // @media only screen and (max-width: $bp-large) {
+  //   width: 100rem;
+  // }
 
   &__heading {
     text-align: center;
@@ -730,6 +822,10 @@
     color: #383737;
     padding-left: 5px;
     padding-right: 5px;
+
+    @media screen and (max-width: $bp-medium) {
+      font-size: 1.9rem;
+    }
   }
 
   &__link {
@@ -749,6 +845,10 @@
       font-size: 1.7rem;
       transition: all 0.3s;
       margin-top: 10px;
+
+      @media screen and (max-width: $bp-large) {
+        width: 70%;
+      }
 
       &:hover {
         background-color: $color-primary-dark;
@@ -770,11 +870,15 @@
   }
 
   &__content {
-    width: 100rem;
+    width: 75%;
     margin-right: auto;
     margin-left: auto;
     padding-top: 25px;
     padding-bottom: 35px;
+
+    @media screen and (max-width: $bp-largest) {
+      width: 95%;
+    }
 
     &--user {
       margin-bottom: 30px;
@@ -788,6 +892,11 @@
         color: #d6d6d6;
         font-size: 1.7rem;
         margin-bottom: 0;
+
+        @media screen and (max-width: $bp-medium) {
+          padding: 0;
+        }
+
         & span {
           font-weight: bold;
           font-size: 3.5rem;
@@ -800,17 +909,38 @@
   &__content--top {
     display: flex;
     justify-content: space-between;
-    width: 73rem;
+    width: 75%;
     margin: 0 auto;
+
+    @media screen and (max-width: $bp-largest) {
+      width: 95%;
+    }
+
+    @media screen and (max-width: $bp-large) {
+      flex-direction: column;
+    }
   }
 
   &__content--phoneimg {
+    @media screen and (max-width: $bp-large) {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
     & img {
       width: 40rem;
+
+      @media screen and (max-width: $bp-large) {
+        width: 30rem;
+      }
     }
   }
 
   &__content--main-title {
+    @media screen and (max-width: $bp-large) {
+      text-align: center;
+    }
+
     & span {
       font-weight: bold;
       color: #fff;

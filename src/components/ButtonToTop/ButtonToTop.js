@@ -19,7 +19,6 @@ const ButtonToTop = () => {
     });
   });
 
-  console.log(point);
   return (
     <div
       id="button__to__top"

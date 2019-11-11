@@ -18,15 +18,23 @@
   color: $color-green;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+
+  @media only screen and (max-width: $bp-largest) {
+    font-size: 1.5rem;
+  }
+
+  @media only screen and (max-width: $bp-large) {
+    font-size: 1.3rem;
+  }
 }
 
 .nav-item {
   font-size: 1.4rem;
   transition: all 0.3s;
 
-  // &:focus {
-  //   background-color: $color-dark;
-  // }
+  @media only screen and (max-width: $bp-largest) {
+    text-align: center;
+  }
 }
 
 .nav-item:hover {
@@ -52,8 +60,8 @@ a:not([href]):not([tabindex]):focus {
 .slick-prev,
 .slick-next {
   background: $color-green !important;
-  width: 5rem !important;
-  height: 5rem !important;
+  width: 50px !important;
+  height: 50px !important;
   border-radius: 50% !important;
   position: absolute;
   z-index: 10;
@@ -61,16 +69,6 @@ a:not([href]):not([tabindex]):focus {
   box-shadow: 0 0 1px 1px rgba(20, 23, 28, 0.1),
     0 3px 1px 0 rgba(20, 23, 28, 0.1);
 }
-
-// .slick-next {
-//   right: -98%;
-//   top: -251px;
-// }
-
-// .slick-prev {
-//   left: -25px;
-//   top: 151px;
-// }
 
 .slick-prev:hover,
 .slick-next:hover {
@@ -106,4 +104,71 @@ a:not([href]):not([tabindex]):focus {
   text-decoration: none;
   background-color: $color-primary;
   outline: none;
+}
+
+.link-header {
+  & a {
+    font-size: 1.5rem;
+  }
+}
+
+.navbar-toggler {
+  outline: none;
+
+  @media screen and (max-width: $bp-large-1) {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    padding: 0;
+    font-size: 2.5rem;
+  }
+
+  &-icon {
+    &::after,
+    &::before {
+      background: #fff;
+      backface-visibility: hidden;
+      content: "";
+      height: 2px;
+      left: 0;
+      transition: 0.75s;
+      width: 30px;
+    }
+
+    &::before {
+      position: absolute;
+      top: 0;
+
+      box-shadow: 0 10px #fff;
+    }
+
+    &::after {
+      position: absolute;
+      top: 20px;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.header__is-open {
+  .navbar-toggler-icon::before {
+    top: 11px;
+    transform: rotate(225deg);
+    box-shadow: transparent 0 0 0 0;
+    top: 10px;
+  }
+
+  .navbar-toggler-icon::after {
+    top: 10px;
+    transform: rotate(315deg);
+  }
+
+  .slider__content {
+    @media screen and (max-width: $bp-large-1) {
+      display: none;
+    }
+  }
 }

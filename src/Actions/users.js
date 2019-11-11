@@ -8,8 +8,6 @@ export const signup = (data, callback) => {
   api
     .post("/QuanLyNguoiDung/DangKy", data)
     .then(res => {
-      console.log(res);
-
       swal({
         title: "Đăng ký thành công",
         icon: "success",
@@ -23,8 +21,6 @@ export const signup = (data, callback) => {
         icon: "error",
         button: "Đóng"
       });
-      console.log(error);
-      console.log(error.response.data);
     });
 };
 
@@ -43,9 +39,6 @@ export const signin = (data, callback) => {
       if (callback) callback(res.data);
     })
     .catch(error => {
-      console.log(error);
-      console.log(error.response.data);
-
       swal({
         title: error.response.data,
         icon: "error",
@@ -62,8 +55,6 @@ export const getUserDetail = (taiKhoan, callback) => {
   api
     .post("/QuanLyNguoiDung/ThongTinTaiKhoan", { taiKhoan })
     .then(res => {
-      console.log(res.data);
-
       const {
         taiKhoan,
         hoTen,
@@ -135,7 +126,6 @@ export const editUser = (data, callback) => {
         icon: "error",
         button: "Đóng"
       });
-      console.log(err);
     });
 };
 

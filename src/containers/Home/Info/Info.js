@@ -6,7 +6,6 @@ import { Waypoint } from "react-waypoint";
 
 const Info = () => {
   const [point, setPoint] = useState(false);
-  console.log(point);
   return (
     <div className="info">
       <div className="info__content">
