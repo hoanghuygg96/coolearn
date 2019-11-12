@@ -245,6 +245,12 @@
   @media screen and (max-width: $bp-large) {
     margin: 0;
     width: 100%;
+    margin-bottom: 5rem;
+
+    height: auto;
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
   }
 
   &__side {
@@ -259,11 +265,22 @@
     overflow: hidden;
     box-shadow: 0 1.5rem 4rem rgba(black, 0.15);
 
+    @media screen and (max-width: $bp-large) {
+      height: auto;
+      position: relative;
+      box-shadow: none;
+    }
+
     &--front {
       background-color: white;
     }
     &--back {
       transform: rotateY(180deg);
+
+      @media screen and (max-width: $bp-large) {
+        transform: rotateY(0);
+        clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+      }
 
       &-1 {
         background-image: linear-gradient(to right bottom, #ffb900, #ff7730);
@@ -280,6 +297,10 @@
   }
   &:hover &__side--front {
     transform: rotateY(-180deg);
+
+    @media screen and (max-width: $bp-large) {
+      transform: rotate(0);
+    }
   }
   &:hover &__side--back {
     transform: rotateY(0);
@@ -377,11 +398,24 @@
     transform: translate(-50%, -50%);
     width: 90%;
     text-align: center;
+
+    @media screen and (max-width: $bp-large) {
+      position: relative;
+      top: 0%;
+      left: 0%;
+      transform: translate(0);
+      width: 100%;
+      padding: 7rem 4rem 4rem 4rem;
+    }
   }
 
   &__price-box {
     color: white;
     margin-bottom: 8rem;
+
+    @media screen and (max-width: $bp-large) {
+      margin-bottom: 4rem;
+    }
   }
 
   &__price-only {
@@ -409,6 +443,15 @@
     transition: all 0.3s;
     margin-bottom: 7.5rem;
 
+    @media screen and (max-width: $bp-large) {
+      margin-bottom: 1.5rem;
+    }
+
+    @media screen and (max-width: $bp-smallest) {
+      font-size: 1.4rem;
+      width: 16rem;
+    }
+
     &:hover {
       color: #777;
       text-decoration: none;
@@ -427,9 +470,6 @@
     padding-left: 5rem;
     padding-right: 5rem;
   }
-  // @media only screen and (max-width: $bp-large) {
-  //   width: 100rem;
-  // }
 
   & figure {
     width: 230px;
