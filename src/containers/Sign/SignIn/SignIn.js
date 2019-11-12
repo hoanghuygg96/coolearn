@@ -1,130 +1,135 @@
-import React, { Component } from "react";
+import React from "react";
 import { signin, setCurrentUser, getUserDetail } from "../../../Actions/users";
 
 import { connect } from "react-redux";
+import * as Yup from "yup";
+import { withFormik, Form, Field } from "formik";
+
 import { Spinner } from "reactstrap";
 
-class SignIn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      taiKhoan: "",
-      matKhau: "",
+const SignIn = ({ errors, touched, isSubmitting }) => {
+  const styleInvalid = "3px solid #ff7730";
+  const styleValid = "3px solid #1abc9c";
 
-      loading: false
+  return (
+    <div className="signin">
+      <div className="signin__content">
+        <Form className="signin__form">
+          <h2 className="heading-secondary  u-margin-bottom-medium signin__heading">
+            Đăng Nhập
+          </h2>
+          <div className="signin__gird">
+            <div
+              className="form-group signin__group"
+              style={{ marginBottom: "55px" }}
+            >
+              <Field
+                type="text"
+                placeholder="Tài khoản"
+                className="form__input signin__input"
+                name="taiKhoan"
+                style={{
+                  borderBottom: `${
+                    touched.taiKhoan
+                      ? errors.taiKhoan
+                        ? styleInvalid
+                        : styleValid
+                      : null
+                  }`
+                }}
+              />
+              <label htmlFor="taikhoan" className="form__label">
+                Tài khoản
+              </label>
+              {touched.taiKhoan && errors.taiKhoan && <p>{errors.taiKhoan}</p>}
+            </div>
+
+            <div
+              className="form-group signin__group"
+              style={{ marginBottom: "55px" }}
+            >
+              <Field
+                type="password"
+                placeholder="Mật khẩu"
+                className="form__input signin__input"
+                name="matKhau"
+                style={{
+                  borderBottom: `${
+                    touched.matKhau
+                      ? errors.matKhau
+                        ? styleInvalid
+                        : styleValid
+                      : null
+                  }`
+                }}
+              />
+              <label htmlFor="matkhau" className="form__label">
+                Mật khẩu
+              </label>
+              {touched.matKhau && errors.matKhau && <p>{errors.matKhau}</p>}
+            </div>
+
+            <div className="signin__button">
+              <button
+                type="submit"
+                className="my-button my-button-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting && <Spinner style={{ marginRight: "1.4rem" }} />}
+                Đăng nhập
+              </button>
+            </div>
+          </div>
+        </Form>
+      </div>
+    </div>
+  );
+};
+
+const FormikSignIn = withFormik({
+  mapPropsToValues({ taiKhoan, matKhau }) {
+    return {
+      taiKhoan: taiKhoan || "",
+      matKhau: matKhau || ""
     };
-  }
-
-  onChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
-  onSubmit = e => {
-    e.preventDefault();
-
-    const { taiKhoan, matKhau } = this.state;
-    this.setState({ loading: true });
-
+  },
+  validationSchema: Yup.object().shape({
+    taiKhoan: Yup.string()
+      .min(8, "Tài khoản phải có ít nhất 8 ký tự.")
+      .max(16, "Tài khoản tối đa 16 ký tự.")
+      .required("Vui lòng điền tài khoản."),
+    matKhau: Yup.string()
+      .min(8, "Mật khẩu phải có ít nhất 8 ký tự.")
+      .max(16, "Tài khoản tối đa 16 ký tự.")
+      .required("Vui lòng điền mật khẩu.")
+  }),
+  handleSubmit(values, { setSubmitting, props }) {
     setTimeout(() => {
-      if (this.state.loading) {
-        this.setState({ loading: false });
-      }
-    }, 10000);
+      setSubmitting(false);
+    }, 5000);
 
-    signin({ taiKhoan, matKhau }, user => {
-      this.setState({ loading: false });
+    signin(values, user => {
+      setSubmitting(false);
       getUserDetail(user.taiKhoan, () => {
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-        this.props.setCurrentUser(currentUser);
+        props.setCurrentUser(currentUser);
       });
 
       if (user.maLoaiNguoiDung === "HV") {
-        this.props.history.push("/");
+        props.history.push("/");
       } else if (user.maLoaiNguoiDung === "GV") {
-        this.props.history.push("/admin");
+        props.history.push("/admin");
       }
     });
-  };
-
-  render() {
-    const { loading } = this.state;
-
-    return (
-      <div className="signin">
-        <div className="signin__content">
-          <form onSubmit={this.onSubmit} className="signin__form">
-            <h2 className="heading-secondary  u-margin-bottom-medium signin__heading">
-              Đăng Nhập
-            </h2>
-            <div className="signin__gird">
-              <div
-                className="form-group signin__group"
-                style={{ marginBottom: "55px" }}
-              >
-                <input
-                  type="text"
-                  placeholder="Tài khoản"
-                  id="taikhoan"
-                  className="form__input signin__input"
-                  name="taiKhoan"
-                  onChange={this.onChange}
-                  required="required"
-                />
-                <label htmlFor="taikhoan" className="form__label">
-                  Tài khoản
-                </label>
-                <div style={{ fontSize: 16, color: "red", marginTop: "-20px" }}>
-                  {this.state.taiKhoanError}
-                </div>
-              </div>
-
-              <div
-                className="form-group signin__group"
-                style={{ marginBottom: "55px" }}
-              >
-                <input
-                  type="password"
-                  placeholder="Mật khẩu"
-                  id="matkhau"
-                  className="form__input signin__input"
-                  name="matKhau"
-                  onChange={this.onChange}
-                  required="required"
-                />
-                <label htmlFor="matkhau" className="form__label">
-                  Mật khẩu
-                </label>
-                <div style={{ fontSize: 16, color: "red", marginTop: "-20px" }}>
-                  {this.state.matKhauError}
-                </div>
-              </div>
-
-              <div className="signin__button">
-                <button className="my-button my-button-full" disabled={loading}>
-                  {loading && <Spinner style={{ marginRight: "1.4rem" }} />}Đăng
-                  nhập
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    );
   }
-}
+})(SignIn);
 
-const mapDispacthToProps = dispatch => {
-  return {
-    setCurrentUser: dataUser => {
-      dispatch(setCurrentUser(dataUser));
-    }
-  };
+const mapDispacthToProps = {
+  setCurrentUser: setCurrentUser
 };
 
 export default connect(
   null,
   mapDispacthToProps
-)(SignIn);
+)(FormikSignIn);

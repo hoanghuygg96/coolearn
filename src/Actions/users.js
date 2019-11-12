@@ -121,6 +121,7 @@ export const editUser = (data, callback) => {
       if (callback) callback(res.data);
     })
     .catch(err => {
+      console.log(err);
       swal({
         title: "Đổi thông tin tài khoản thất bại",
         icon: "error",

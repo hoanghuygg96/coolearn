@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { editUser, setCurrentUser } from "../../../Actions/users";
-import { maNhom } from "../../../MaNhom/MaNhom";
 
-import swal from "sweetalert";
-import { Spinner } from "reactstrap";
+import FormPassworkContent from "./FormPasswordContent/FormPassworkContent";
 
 class FromPassword extends Component {
   constructor(props) {
@@ -15,20 +11,8 @@ class FromPassword extends Component {
       soDT: "",
       email: "",
       maLoaiNguoiDung: "",
-      maNhom: maNhom,
-
-      matKhau: "",
-      nhapLaiMatKhau: "",
-
-      loading: false
     };
   }
-
-  onChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
 
   componentDidMount() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -44,112 +28,59 @@ class FromPassword extends Component {
     });
   }
 
-  onSubmit = e => {
-    e.preventDefault();
+  // onSubmit = e => {
 
-    this.setState({ loading: true });
+  //   if (this.state.matKhau === this.state.nhapLaiMatKhau) {
+  //     const {
+  //       taiKhoan,
+  //       hoTen,
+  //       soDT,
+  //       maLoaiNguoiDung,
+  //       maNhom,
+  //       email,
+  //       matKhau
+  //     } = this.state;
 
-    setTimeout(() => {
-      if (this.state.loading) {
-        this.setState({ loading: false });
-      }
-    }, 10000);
+  //     editUser(
+  //       { taiKhoan, hoTen, soDT, maLoaiNguoiDung, email, maNhom, matKhau },
+  //       () => {
+  //         this.setState({ loading: false });
+  //         swal({
+  //           title: "Đổi mật khẩu thành công",
+  //           icon: "success",
+  //           button: "Đóng"
+  //         });
 
-    if (this.state.matKhau === this.state.nhapLaiMatKhau) {
-      const {
-        taiKhoan,
-        hoTen,
-        soDT,
-        maLoaiNguoiDung,
-        maNhom,
-        email,
-        matKhau
-      } = this.state;
+  //         this.props.setCurrentUser({});
 
-      editUser(
-        { taiKhoan, hoTen, soDT, maLoaiNguoiDung, email, maNhom, matKhau },
-        () => {
-          this.setState({ loading: false });
-          swal({
-            title: "Đổi mật khẩu thành công",
-            icon: "success",
-            button: "Đóng"
-          });
+  //         localStorage.removeItem("currentUser");
+  //         localStorage.removeItem("accessToken");
+  //         localStorage.removeItem("chiTietKhoaHocGhiDanh");
 
-          this.props.setCurrentUser({});
-
-          localStorage.removeItem("currentUser");
-          localStorage.removeItem("accessToken");
-          localStorage.removeItem("chiTietKhoaHocGhiDanh");
-
-          this.props.history.push("/signin");
-        }
-      );
-    } else {
-      swal({
-        title: "Nhập lại mật khẩu không đúng",
-        icon: "error",
-        button: "Đóng"
-      });
-    }
-  };
+  //         this.props.history.push("/signin");
+  //       }
+  //     );
+  //   } else {
+  //     swal({
+  //       title: "Nhập lại mật khẩu không đúng",
+  //       icon: "error",
+  //       button: "Đóng"
+  //     });
+  //   }
+  // };
 
   render() {
-    const { loading } = this.state;
+    const { taiKhoan, hoTen, soDT, maLoaiNguoiDung, email } = this.state;
     return (
-      <form onSubmit={this.onSubmit} className="profile__form">
-        <div className="profile__flex">
-          <div className="form-group profile__group">
-            <input
-              type="password"
-              placeholder="Mật khẩu"
-              id="matKhau"
-              name="matKhau"
-              required="required"
-              className="form__input profile__input"
-              onChange={this.onChange}
-            />
-            <label htmlFor="matKhau" className="form__label">
-              Mật khẩu
-            </label>
-          </div>
-
-          <div
-            className="form-group profile__group"
-            style={{ marginBottom: "-35px" }}
-          >
-            <input
-              type="password"
-              placeholder="Nhập lại mật khẩu"
-              id="nhapLaiMatKhau"
-              name="nhapLaiMatKhau"
-              required="required"
-              className="form__input profile__input"
-              onChange={this.onChange}
-            />
-            <label htmlFor="nhapLaiMatKhau" className="form__label">
-              Nhập lại mật khẩu
-            </label>
-          </div>
-        </div>
-        <div className="profile__button">
-          <button className="profile__button-bottom" disabled={loading}>
-            {loading && <Spinner style={{ marginRight: "1.4rem" }} />}Đổi mật
-            khẩu
-          </button>
-        </div>
-      </form>
+      <FormPassworkContent
+        taiKhoan={taiKhoan}
+        hoTen={hoTen}
+        soDT={soDT}
+        maLoaiNguoiDung={maLoaiNguoiDung}
+        email={email}
+      />
     );
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-    setCurrentUser: dataUser => {
-      dispatch(setCurrentUser(dataUser));
-    }
-  };
-};
-export default connect(
-  null,
-  mapDispatchToProps
-)(FromPassword);
+
+export default FromPassword;

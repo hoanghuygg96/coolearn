@@ -1,162 +1,192 @@
-import React, { Component } from "react";
+import React from "react";
 import { signup } from "../../../Actions/users";
 import { maNhom } from "../../../MaNhom/MaNhom";
 import { Spinner } from "reactstrap";
+import * as Yup from "yup";
+import { withFormik, Form, Field } from "formik";
 
-class SignUp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      taikhoan: "",
-      matKhau: "",
-      hoTen: "",
-      soDT: "",
-      email: "",
-      maNhom: maNhom,
+const SignUp = ({ errors, touched, isSubmitting }) => {
+  const styleInvalid = "3px solid #ff7730";
+  const styleValid = "3px solid #1abc9c";
 
-      loading: false
+  return (
+    <div className="signup">
+      <div className="signup__content">
+        <Form className="signup__form">
+          <h2 className="heading-secondary  u-margin-bottom-medium signup__heading">
+            Đăng Ký
+          </h2>
+          <div className="signup__gird">
+            <div className="form-group">
+              <Field
+                type="text"
+                placeholder="Tài khoản"
+                className="form__input"
+                name="taiKhoan"
+                style={{
+                  borderBottom: `${
+                    touched.taiKhoan
+                      ? errors.taiKhoan
+                        ? styleInvalid
+                        : styleValid
+                      : null
+                  }`
+                }}
+              />
+              <label htmlFor="taiKhoan" className="form__label">
+                Tài khoản
+              </label>
+              {touched.taiKhoan && errors.taiKhoan && <p>{errors.taiKhoan}</p>}
+            </div>
+
+            <div className="form-group">
+              <Field
+                type="password"
+                placeholder="Mật khẩu"
+                className="form__input"
+                name="matKhau"
+                style={{
+                  borderBottom: `${
+                    touched.matKhau
+                      ? errors.matKhau
+                        ? styleInvalid
+                        : styleValid
+                      : null
+                  }`
+                }}
+              />
+              <label htmlFor="matkhau" className="form__label">
+                Mật khẩu
+              </label>
+              {touched.matKhau && errors.matKhau && <p>{errors.matKhau}</p>}
+            </div>
+
+            <div className="form-group">
+              <Field
+                type="hoTen"
+                placeholder="Họ tên"
+                className="form__input"
+                name="hoTen"
+                style={{
+                  borderBottom: `${
+                    touched.hoTen
+                      ? errors.hoTen
+                        ? styleInvalid
+                        : styleValid
+                      : null
+                  }`
+                }}
+              />
+              <label htmlFor="hoten" className="form__label">
+                Họ tên
+              </label>
+              {touched.hoTen && errors.hoTen && <p>{errors.hoTen}</p>}
+            </div>
+
+            <div className="form-group">
+              <Field
+                type="text"
+                placeholder="Số điện thoại"
+                className="form__input"
+                name="soDT"
+                style={{
+                  borderBottom: `${
+                    touched.soDT
+                      ? errors.soDT
+                        ? styleInvalid
+                        : styleValid
+                      : null
+                  }`
+                }}
+              />
+              <label htmlFor="sodienthoai" className="form__label">
+                Số điện thoại
+              </label>
+              {touched.soDT && errors.soDT && <p>{errors.soDT}</p>}
+            </div>
+
+            <div className="form-group signup__email">
+              <Field
+                type="email"
+                placeholder="Email"
+                className="form__input"
+                name="email"
+                style={{
+                  borderBottom: `${
+                    touched.email
+                      ? errors.email
+                        ? styleInvalid
+                        : styleValid
+                      : null
+                  }`
+                }}
+              />
+              <label htmlFor="email" className="form__label">
+                Email
+              </label>
+              {touched.email && errors.email && <p>{errors.email}</p>}
+            </div>
+          </div>
+
+          <div className="signup__button">
+            <button
+              type="submit"
+              className="my-button my-button-full"
+              disabled={isSubmitting}
+            >
+              {isSubmitting && <Spinner style={{ marginRight: "1.4rem" }} />}
+              Đăng ký
+            </button>
+          </div>
+        </Form>
+      </div>
+    </div>
+  );
+};
+
+const FormikSignUn = withFormik({
+  mapPropsToValues({ taiKhoan, matKhau, hoTen, soDT, email }) {
+    return {
+      taiKhoan: taiKhoan || "",
+      matKhau: matKhau || "",
+      hoTen: hoTen || "",
+      soDT: soDT || "",
+      email: email || "",
+      maNhom: maNhom
     };
-  }
-
-  onChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
-  onSubmit = e => {
-    e.preventDefault();
-
-    this.setState({ loading: true });
-
+  },
+  validationSchema: Yup.object().shape({
+    taiKhoan: Yup.string()
+      .min(8, "Tài khoản phải có ít nhất 8 ký tự.")
+      .max(16, "Tài khoản tối đa 16 ký tự.")
+      .required("Vui lòng điền tài khoản."),
+    matKhau: Yup.string()
+      .min(8, "Mật khẩu phải có ít nhất 8 ký tự.")
+      .max(16, "Tài khoản tối đa 30 ký tự.")
+      .required("Vui lòng điền mật khẩu."),
+    hoTen: Yup.string()
+      .min(5, "Họ tên phải có ít nhất 5 ký tự.")
+      .max(16, "Họ tên tối đa 20 ký tự.")
+      .required("Vui lòng điền họ tên."),
+    email: Yup.string()
+      .email("Email không hợp lệ")
+      .required("Vui lòng điền email."),
+    soDT: Yup.string()
+      .matches(/^[0-9]+$/, "Số điện thoại không hợp lệ")
+      .min(10, "Số điện thoại tối thiểu 10 số.")
+      .max(15, "Số điện thoại tối đa chỉ 15 số.")
+      .required("Vui lòng điền số điện thoại.")
+  }),
+  handleSubmit(values, { setSubmitting, props }) {
     setTimeout(() => {
-      if (this.state.loading) {
-        this.setState({ loading: false });
-      }
+      setSubmitting(false);
     }, 10000);
 
-    const { taiKhoan, matKhau, hoTen, soDT, email, maNhom } = this.state;
-    console.log({ taiKhoan, matKhau, hoTen, soDT, email, maNhom });
-
-    signup({ taiKhoan, matKhau, hoTen, soDT, email, maNhom }, () => {
-      this.props.history.push("/signin");
-      this.setState({ loading: false });
+    signup(values, () => {
+      setSubmitting(false);
+      props.history.push("/signin");
     });
-  };
-
-  render() {
-    const { loading } = this.state;
-
-    return (
-      <div className="signup">
-        <div className="signup__content">
-          <form onSubmit={this.onSubmit} className="signup__form">
-            <h2 className="heading-secondary  u-margin-bottom-medium signup__heading">
-              Đăng Ký
-            </h2>
-            <div className="signup__gird">
-              <div className="form-group">
-                <input
-                  type="text"
-                  placeholder="Tài khoản"
-                  id="taikhoan"
-                  className="form__input"
-                  name="taiKhoan"
-                  onChange={this.onChange}
-                  required="required"
-                />
-                <label htmlFor="taikhoan" className="form__label">
-                  Tài khoản
-                </label>
-                <div style={{ fontSize: 16, color: "red", marginTop: "-20px" }}>
-                  {this.state.taiKhoanError}
-                </div>
-              </div>
-
-              <div className="form-group">
-                <input
-                  type="password"
-                  placeholder="Mật khẩu"
-                  id="matkhau"
-                  className="form__input"
-                  name="matKhau"
-                  onChange={this.onChange}
-                  required="required"
-                />
-                <label htmlFor="matkhau" className="form__label">
-                  Mật khẩu
-                </label>
-                <div style={{ fontSize: 16, color: "red", marginTop: "-20px" }}>
-                  {this.state.matKhauError}
-                </div>
-              </div>
-
-              <div className="form-group">
-                <input
-                  type="hoTen"
-                  placeholder="Họ tên"
-                  id="hoten"
-                  className="form__input"
-                  name="hoTen"
-                  onChange={this.onChange}
-                  required="required"
-                />
-                <label htmlFor="hoten" className="form__label">
-                  Họ tên
-                </label>
-                <div style={{ fontSize: 16, color: "red", marginTop: "-20px" }}>
-                  {this.state.hoTenError}
-                </div>
-              </div>
-
-              <div className="form-group">
-                <input
-                  type="text"
-                  placeholder="Số điện thoại"
-                  id="sodienthoai"
-                  className="form__input"
-                  name="soDT"
-                  onChange={this.onChange}
-                  required="required"
-                />
-                <label htmlFor="sodienthoai" className="form__label">
-                  Số điện thoại
-                </label>
-                <div style={{ fontSize: 16, color: "red", marginTop: "-20px" }}>
-                  {this.state.soDTError}
-                </div>
-              </div>
-
-              <div className="form-group signup__email">
-                <input
-                  type="email"
-                  placeholder="Email"
-                  id="email"
-                  className="form__input"
-                  name="email"
-                  onChange={this.onChange}
-                  required="required"
-                />
-                <label htmlFor="email" className="form__label">
-                  Email
-                </label>
-                <div style={{ fontSize: 16, color: "red", marginTop: "-20px" }}>
-                  {this.state.emailError}
-                </div>
-              </div>
-            </div>
-
-            <div className="signup__button">
-              <button className="my-button my-button-full" disabled={loading}>
-                {loading && <Spinner style={{ marginRight: "1.4rem" }} />}Đăng
-                ký
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    );
   }
-}
+})(SignUp);
 
-export default SignUp;
+export default FormikSignUn;

@@ -9,6 +9,10 @@
   width: 21rem;
   transition: all 0.3s;
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover {
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
   }

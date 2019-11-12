@@ -57,10 +57,19 @@
 
 .form-group {
   margin-bottom: 5rem;
+
+  p {
+    font-weight: bold;
+    font-size: 1.35rem;
+    margin-top: -22px;
+    margin-left: 19px;
+    color: #ff7730;
+  }
 }
 
 .form__input {
   font-size: 1.5rem;
+  font-weight: bold;
   font-family: inherit;
   color: inherit;
   padding: 1rem 2rem;
@@ -72,6 +81,10 @@
   display: block;
   transition: all 0.3s;
 
+  &:focus {
+    outline: none;
+  }
+
   &:placeholder-shown + .form__label {
     opacity: 0;
     visibility: hidden;
@@ -79,7 +92,7 @@
   }
 }
 .form__label {
-  font-size: 1.2rem;
+  font-size: 1.45rem;
   font-weight: 700;
   margin-left: 2rem;
   margin-top: 0.7rem;

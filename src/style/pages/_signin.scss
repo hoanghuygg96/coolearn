@@ -25,6 +25,7 @@
 
     display: flex;
     justify-content: center;
+    padding-bottom: 15px;
   }
 
   &__input {
@@ -37,6 +38,7 @@
 
   &__button {
     text-align: center;
+    margin-top: -17px;
 
     & button {
       margin-top: 0;
