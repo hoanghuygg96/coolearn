@@ -198,7 +198,7 @@
       height: 49px;
       background-position: -260px -299px;
 
-      @media screen and (max-width: $bp-smallest) {
+      @media screen and (max-width: $bp-small) {
         display: none;
       }
 
@@ -648,6 +648,10 @@
       height: 13rem;
     }
 
+    @media screen and (max-width: $bp-small) {
+      height: 15rem;
+    }
+
     &--animation-1 {
       animation-delay: 1s;
       animation: moveInBottom 1s;
@@ -850,6 +854,10 @@
         width: 70%;
       }
 
+      @media screen and (max-width: $bp-smallest) {
+        width: 75%;
+      }
+
       &:hover {
         background-color: $color-primary-dark;
       }
@@ -863,6 +871,10 @@
   &__number {
     width: 120px;
     display: inline-block;
+
+    @media screen and (max-width: $bp-small) {
+      width: 80%;
+    }
 
     &-2 {
       width: 96px;

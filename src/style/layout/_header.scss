@@ -356,6 +356,9 @@
       @media screen and (max-width: $bp-large-1) {
         font-size: 3rem;
       }
+      @media screen and (max-width: $bp-small) {
+        font-size: 2rem;
+      }
     }
   }
 }

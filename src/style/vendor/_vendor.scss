@@ -172,3 +172,7 @@ a:not([href]):not([tabindex]):focus {
     }
   }
 }
+.dropdown-menu {
+  padding: 0;
+  box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.53);
+}
