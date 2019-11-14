@@ -20,16 +20,18 @@ import { filterCourses } from "./Actions/courses";
 import { getUserDetail } from "./Actions/users";
 import MyCourse from "./containers/MyCourse/MyCourse";
 import Admin from "./containers/Admin/Admin";
-
 import ScrollToTop from "./ScrollToTop/ScrollToTop";
 import NotFound from "./containers/NotFound/NotFound";
-// import MycoursesDetail from "./containers/MyCoursesDetail/MycoursesDetail";
-
 import ProtectedRoute from "./Auth/protected.route";
 import ButtonToTop from "./components/ButtonToTop/ButtonToTop";
+// import MycoursesDetail from "./containers/MyCoursesDetail/MycoursesDetail";
 // import ProtectedUserRoute from "./Auth/protected.user.router";
 
 class App extends React.Component {
+  state = {
+    loading: true
+  };
+
   componentDidMount() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -42,6 +44,12 @@ class App extends React.Component {
     getCourses(courses => {
       this.props.courses(courses);
     });
+
+    const ele = document.getElementById("loader");
+    if (ele) {
+      // remove from DOM
+      ele.outerHTML = "";
+    }
   }
 
   render() {
@@ -100,7 +108,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
